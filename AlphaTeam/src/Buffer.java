@@ -147,6 +147,10 @@ class Buffer {
 	public JScrollPane getWindow() {
 		return scroller;
 	}
+	
+	public JTextArea getTextArea() {
+		return disWindow;
+	}
 
 	public String getFileName() {
 		return fileName;

@@ -17,6 +17,11 @@ public class GUI_ActionListener implements ActionListener {
 
 	private NewCommand newCommand = new NewCommand();
 	private OpenCommand openCommand = new OpenCommand();
+	private CloseCommand closeCommand = new CloseCommand();
+	
+	private CutCommand cutCommand = new CutCommand();
+	private CopyCommand copyCommand = new CopyCommand();
+	private PasteCommand pasteCommand = new PasteCommand();
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -39,8 +44,19 @@ public class GUI_ActionListener implements ActionListener {
 		}
 		
 		if(e.getActionCommand().equals("Close")) {
-			CloseCommand closeCommand = new CloseCommand();
 			closeCommand.execute();
+		}
+		
+		if(e.getActionCommand().equals("Copy")) {
+			copyCommand.execute();
+		}
+		
+		if(e.getActionCommand().equals("Cut")) {
+			cutCommand.execute();
+		}
+		
+		if(e.getActionCommand().equals("Paste")) {
+			pasteCommand.execute();
 		}
 	}
 }

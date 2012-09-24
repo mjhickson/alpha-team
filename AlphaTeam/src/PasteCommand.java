@@ -20,8 +20,8 @@ public class PasteCommand implements Command {
 	 */
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-
+		Buffer b = Buffer.getBuffer(GUI_Main.getSelectedTab());
+		b.getTextArea().paste();
 	}
 
 }
