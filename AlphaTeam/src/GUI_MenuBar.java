@@ -37,7 +37,8 @@ public class GUI_MenuBar extends JMenuBar{
 						italic, 
 						header, 
 						body,
-						specify;
+						specify,
+						close;
 	private JMenu[] tableGrid;
 	private JMenuItem[][] tableGridSelect;
 	
@@ -109,6 +110,11 @@ public class GUI_MenuBar extends JMenuBar{
 			         KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 				saveAs.setMnemonic(KeyEvent.VK_A);
 				saveAs.addActionListener(actionListener);
+			close = new JMenuItem("Close");
+				close.setAccelerator(
+			         KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK));
+				close.setMnemonic(KeyEvent.VK_A);
+				close.addActionListener(actionListener);
 			
 		//edit
 			copyText = new JMenuItem("Copy");
@@ -128,7 +134,7 @@ public class GUI_MenuBar extends JMenuBar{
 				pasteText.addActionListener(actionListener);
 			autoWrap = new JRadioButtonMenuItem("Auto-Wrap");
 				autoWrap.setAccelerator(
-			         KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK));
+			         KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.CTRL_MASK));
 				autoWrap.setMnemonic(KeyEvent.VK_W);
 				autoWrap.addActionListener(actionListener);
 			autoIndent = new JRadioButtonMenuItem("Auto-Indent");
@@ -165,6 +171,8 @@ public class GUI_MenuBar extends JMenuBar{
 		fileMenu.add(newFile);
 			fileMenu.addSeparator();
 		fileMenu.add(openFile);
+			fileMenu.addSeparator();
+		fileMenu.add(close);
 			fileMenu.addSeparator();
 		fileMenu.add(saveFile);
 		fileMenu.add(saveAs);

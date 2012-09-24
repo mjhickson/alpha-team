@@ -7,12 +7,14 @@
  *
  */
 public class SaveCommand implements Command {
-
+	
+	private boolean saveAs;
+	
 	/**
 	 * 
 	 */
-	public SaveCommand() {
-		// TODO Auto-generated constructor stub
+	public SaveCommand(boolean as) {
+		saveAs = as;
 	}
 
 	/* (non-Javadoc)
@@ -20,8 +22,9 @@ public class SaveCommand implements Command {
 	 */
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-
+		int index = GUI_Main.getSelectedTab();
+		Buffer.getBuffer(index).saveFile(saveAs);
+		GUI_Main.updateTabs();
 	}
 
 }

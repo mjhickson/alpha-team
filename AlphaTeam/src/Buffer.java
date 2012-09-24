@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
@@ -26,6 +27,7 @@ class Buffer {
 	private String plainText;
 	private String fileName;
 	private boolean neverSaved, saved;
+	private static ArrayList<Buffer> bufferList;
 	
 	/*
 	 * Class default constructor sets global variables to default parameters
@@ -39,6 +41,9 @@ class Buffer {
 		saved = false;
 		
 		displayPlainText();
+		
+		if(bufferList == null)
+				bufferList = new ArrayList<Buffer>();
 	}
 	
 	/*
@@ -56,6 +61,9 @@ class Buffer {
 		
 		readInFile();
 		displayPlainText();
+		
+		if(bufferList == null)
+			bufferList = new ArrayList<Buffer>();
 	}
 	
 	/*
@@ -79,7 +87,20 @@ class Buffer {
 	 * Public method for saving HTML buffer contents to a file
 	 * @param String Used as the file name to be saved to
 	 */
-	public boolean saveToFile() {
+	public boolean saveFile(boolean as) {
+		if(as || neverSaved) {
+			JFileChooser fChooser = new JFileChooser();
+			fChooser.setApproveButtonText("Save As");
+			fChooser.showOpenDialog(null);
+			fileName = fChooser.getSelectedFile().getPath();
+      
+			//Check if file ends with .html and add if necessary
+			if(!fileName.contains(".html"))
+				fileName += ".html";
+			neverSaved = false; //File has been saved at least once
+		}//if
+		
+		//Save file
 		try {
 			BufferedWriter bufferOut = new BufferedWriter(new FileWriter(fileName));
 			bufferOut.write(disWindow.getText());
@@ -92,20 +113,33 @@ class Buffer {
 		}
 	}
 	
-	public boolean saveAsFile() {
-		JFileChooser fChooser = new JFileChooser();
-		fChooser.setApproveButtonText("Save");
-        fChooser.showOpenDialog(null);
-        fileName = fChooser.getSelectedFile().getPath();
-      
-        //Check if file ends with .html and add if necessary
-        if(!fileName.contains(".html"))
-        	fileName += ".html";
-        neverSaved = false; //File has been saved at least once
-        
-        return saveToFile();
+	/*
+	 * Returns the buffer at index 'i'
+	 * @param int Index of the buffer to be returned
+	 */
+	public static Buffer getBuffer(int i) {
+		return bufferList.get(i);
 	}
 	
+	/*
+	 * Adds a buffer to the list of currently loaded buffers
+	 * @param Buffer Buffer object to be added to the list
+	 */
+	public static void addBuffer(Buffer b) {
+		bufferList.add(b);
+	}
+	
+	/*
+	 * Removes the buffer at the index location 'i'
+	 * @param int Index location of the buffer to be removed
+	 */
+	public static void removeBuffer(int i) {
+		bufferList.remove(i);
+	}
+	
+	/*
+	 * Sets the text in the output window with the global variable 'plainText'
+	 */
 	private void displayPlainText() {
 		disWindow.setText(plainText);
 	}
@@ -124,6 +158,14 @@ class Buffer {
 	
 	public boolean getNeverSaved() {
 		return neverSaved;
+	}
+	
+	public void setSaved(boolean s) {
+		saved = s;
+	}
+	
+	public boolean getSaved() {
+		return saved;
 	}
 	
 }

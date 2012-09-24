@@ -1,3 +1,5 @@
+import javax.swing.JFileChooser;
+
 /**
  * 
  */
@@ -20,8 +22,12 @@ public class OpenCommand implements Command {
 	 */
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-
+		JFileChooser fChooser = new JFileChooser();
+        fChooser.showOpenDialog(null);
+       
+        Buffer b = new Buffer(fChooser.getSelectedFile());
+        Buffer.addBuffer(b);
+        GUI_Main.addBuffer(b);
 	}
 
 }

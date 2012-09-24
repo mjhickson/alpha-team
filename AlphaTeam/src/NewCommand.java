@@ -12,7 +12,7 @@ public class NewCommand implements Command {
 	 * 
 	 */
 	public NewCommand() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/* (non-Javadoc)
@@ -20,8 +20,9 @@ public class NewCommand implements Command {
 	 */
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-
+		Buffer b = new Buffer();
+		Buffer.addBuffer(b);
+		GUI_Main.addBuffer(b);
 	}
 
 }

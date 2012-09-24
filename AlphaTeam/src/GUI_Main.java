@@ -22,17 +22,18 @@ public class GUI_Main extends JFrame {
 	private GUI_MenuBar menuBar;
 	private Formatter formatter;
 	private static JTabbedPane tabs;
-	private static ArrayList<Buffer> buff;
-	private JButton add;
-
+	private JButton closeTab;
+	
 	public GUI_Main() {
 		formatter = new Formatter();
-		tabs = new JTabbedPane();
 		actionListener = new GUI_ActionListener();
-		buff = new ArrayList<Buffer>();
 		
 		menuBar = new GUI_MenuBar();
 		setJMenuBar(menuBar); //Set menuBar to the JFrame
+		
+		tabs = new JTabbedPane();
+		closeTab = new JButton("x");
+		
 
 		//Build panels
 		//Left Panel
@@ -55,22 +56,34 @@ public class GUI_Main extends JFrame {
 	
 	public static void addBuffer(Buffer buf) {
 		tabs.add(buf.getFileName(), buf.getWindow());
-		buff.add(buf);
+		tabs.setSelectedIndex(tabs.getTabCount() - 1); //Set new tab as currently selected
 	}
 	
 	/*
 	 * Public method which saves the currently selected buffer content to its file
 	 */
-	public static void saveFile(boolean as) {
-		//Check for no open file buffers before attempting to save
+	public static int getSelectedTab() {
+		//Check for no open file buffers 
 		if(tabs.getTabCount() >= 1) {
-			int index = tabs.getSelectedIndex();
-			if(buff.get(index).getNeverSaved() || as) { //'Save As' to the currently selected buffer
-				buff.get(index).saveAsFile();
-				tabs.setTitleAt(index, buff.get(index).getFileName()); 
-			} else 
-				buff.get(index).saveToFile();
+			return tabs.getSelectedIndex();
+		} else {
+			return -1; //Return -1 if there are no tabs open
 		}
+	}
+	
+	/*
+	 * Removes tab at desired index
+	 * @param int Index of the tab to be removed
+	 */
+	public static void removeTab(int i) {
+		tabs.remove(i);
+	}
+	
+	public static void updateTabs() {
+		for(int i = 0; i < tabs.getTabCount(); i++) {
+			tabs.setTitleAt(i, Buffer.getBuffer(i).getFileName()); 	
+		}
+
 	}
 	
 	public static void main(String[] args) {

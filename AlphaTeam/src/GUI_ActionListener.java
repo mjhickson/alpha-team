@@ -15,25 +15,32 @@ import javax.swing.JPanel;
  */
 public class GUI_ActionListener implements ActionListener {
 
+	private NewCommand newCommand = new NewCommand();
+	private OpenCommand openCommand = new OpenCommand();
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("New")) {
-			GUI_Main.addBuffer(new Buffer());
+			newCommand.execute();
 		}
 			
 		if(e.getActionCommand().equals("Open")) {
-			JFileChooser fChooser = new JFileChooser();
-	        fChooser.showOpenDialog(null);
-	        GUI_Main.addBuffer(new Buffer(fChooser.getSelectedFile()));
+			openCommand.execute();
 		}
 		
 		if(e.getActionCommand().equals("Save")) {
-			GUI_Main.saveFile(false);
+			SaveCommand saveCommand = new SaveCommand(false);
+			saveCommand.execute();
 		}
 		
 		if(e.getActionCommand().equals("Save As")) {
-			GUI_Main.saveFile(true);
+			SaveCommand saveCommand = new SaveCommand(true);
+			saveCommand.execute();
 		}
 		
+		if(e.getActionCommand().equals("Close")) {
+			CloseCommand closeCommand = new CloseCommand();
+			closeCommand.execute();
+		}
 	}
 }
