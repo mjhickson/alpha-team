@@ -85,7 +85,7 @@ class Buffer {
 	
 	/*
 	 * Public method for saving HTML buffer contents to a file
-	 * @param String Used as the file name to be saved to
+	 * @param Boolean True value triggers "Save As" functions
 	 */
 	public boolean saveFile(boolean as) {
 		if(as || neverSaved) {

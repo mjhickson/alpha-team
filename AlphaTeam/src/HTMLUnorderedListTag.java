@@ -15,7 +15,7 @@ public class HTMLUnorderedListTag implements HTMLConstruct {
 	private String sTag;
 	private String eTag;
 	private String text;
-	private List<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
+	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLUnorderedListTag(){
 		tagName = "ul";
@@ -59,4 +59,8 @@ public class HTMLUnorderedListTag implements HTMLConstruct {
 		return eTag;
 	}
 	
+	@Override
+	public ArrayList<HTMLConstruct> getChild() {
+		return childConstructs;
+	}
 }

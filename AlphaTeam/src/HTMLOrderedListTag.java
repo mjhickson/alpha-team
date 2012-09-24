@@ -15,7 +15,7 @@ public class HTMLOrderedListTag implements HTMLConstruct {
 	private String sTag;
 	private String eTag;
 	private String text;
-	private List<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
+	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLOrderedListTag(){
 		tagName = "ol";
@@ -59,4 +59,8 @@ public class HTMLOrderedListTag implements HTMLConstruct {
 		return eTag;
 	}
 	
+	@Override
+	public ArrayList<HTMLConstruct> getChild() {
+		return childConstructs;
+	}
 }

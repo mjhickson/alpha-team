@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * HTMLConstruct.java
  * 
@@ -23,6 +25,9 @@ public interface HTMLConstruct {
 	
 	//Removes a childHTMLConstruct
 	public void remove(HTMLConstruct construct);
+	
+	//Returns reference to child
+	public ArrayList<HTMLConstruct> getChild();
 	
 	//Sets the text in between HTML Tags
 	public void setText(String text);

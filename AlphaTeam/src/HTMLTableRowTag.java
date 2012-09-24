@@ -15,7 +15,7 @@ public class HTMLTableRowTag implements HTMLConstruct {
 	private String sTag;
 	private String eTag;
 	private String text;
-	private List<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
+	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLTableRowTag(){
 		tagName = "tr";
@@ -57,6 +57,11 @@ public class HTMLTableRowTag implements HTMLConstruct {
 	//Gets the end tag
 	public String getETag() {
 		return eTag;
+	}
+	
+	@Override
+	public ArrayList<HTMLConstruct> getChild() {
+		return childConstructs;
 	}
 	
 }

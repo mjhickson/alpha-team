@@ -22,8 +22,7 @@ public class GUI_Main extends JFrame {
 	private GUI_MenuBar menuBar;
 	private Formatter formatter;
 	private static JTabbedPane tabs;
-	private JButton closeTab;
-	
+
 	public GUI_Main() {
 		formatter = new Formatter();
 		actionListener = new GUI_ActionListener();
@@ -32,8 +31,6 @@ public class GUI_Main extends JFrame {
 		setJMenuBar(menuBar); //Set menuBar to the JFrame
 		
 		tabs = new JTabbedPane();
-		closeTab = new JButton("x");
-		
 
 		//Build panels
 		//Left Panel

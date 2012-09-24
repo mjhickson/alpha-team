@@ -15,7 +15,7 @@ public class HTMLTableDataTag implements HTMLConstruct {
 	private String sTag;
 	private String eTag;
 	private String text;
-	private List<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
+	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLTableDataTag(){
 		tagName = "td";
@@ -59,4 +59,8 @@ public class HTMLTableDataTag implements HTMLConstruct {
 		return eTag;
 	}
 	
+	@Override
+	public ArrayList<HTMLConstruct> getChild() {
+		return childConstructs;
+	}
 }

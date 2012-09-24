@@ -16,7 +16,7 @@ public class HTMLBoldTag implements HTMLConstruct {
 	private String sTag;
 	private String eTag;
 	private String text;
-	private List<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
+	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLBoldTag(){
 		tagName = "b";
@@ -58,6 +58,11 @@ public class HTMLBoldTag implements HTMLConstruct {
 	//Gets the end tag
 	public String getETag() {
 		return eTag;
+	}
+
+	@Override
+	public ArrayList<HTMLConstruct> getChild() {
+		return childConstructs;
 	}
 
 }
