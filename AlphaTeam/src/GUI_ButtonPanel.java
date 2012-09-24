@@ -32,12 +32,12 @@ class GUI_ButtonPanel extends JPanel{
 		insertHTML.addActionListener(actionListener);
 		
 		insertBold = new JButton("</b>");
-		insertHTML.setActionCommand("insert_b");
+		insertBold.setActionCommand("insert_b");
 		insertBold.setPreferredSize(formatter.getButton());
 		insertBold.addActionListener(actionListener);
 		
 		insertItalic = new JButton("</i>");
-		insertHTML.setActionCommand("insert_i");
+		insertItalic.setActionCommand("insert_i");
 		insertItalic.setPreferredSize(formatter.getButton());
 		insertItalic.addActionListener(actionListener);
 		

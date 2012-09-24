@@ -79,6 +79,7 @@ public class GUI_MenuBar extends JMenuBar{
 					tableGridSelect[i][j] = new JMenuItem(i + " x " + j);
 					tableGrid[i].add(tableGridSelect[i][j]);
 					tableGridSelect[i][j].addActionListener(actionListener);
+					tableGridSelect[i][j].setActionCommand("insert_" + i + "," + j);
 				}
 			}
 			
@@ -146,10 +147,13 @@ public class GUI_MenuBar extends JMenuBar{
 			//Insert items
 			bold = new JMenuItem("Bold");
 				bold.addActionListener(actionListener);
+				bold.setActionCommand("insert_b");
 			italic = new JMenuItem("Italic");
 				italic.addActionListener(actionListener);
+				italic.setActionCommand("insert_i");
 			header = new JMenuItem("Header");
 				header.addActionListener(actionListener);
+				header.setActionCommand("insert_h1");
 			body = new JMenuItem("Body");
 				body.addActionListener(actionListener);
 			bulleted = new JMenuItem("Bullets");

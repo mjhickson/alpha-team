@@ -172,4 +172,8 @@ class Buffer {
 		return saved;
 	}
 	
+	public void setWrapping(boolean b) {
+		disWindow.setLineWrap(b);
+	}
+	
 }

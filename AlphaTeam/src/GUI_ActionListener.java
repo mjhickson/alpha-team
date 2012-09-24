@@ -58,5 +58,11 @@ public class GUI_ActionListener implements ActionListener {
 		if(e.getActionCommand().equals("Paste")) {
 			pasteCommand.execute();
 		}
+		
+		if(e.getActionCommand().contains("insert_")) {
+			InsertTagCommand insrtTag = new InsertTagCommand(e.getActionCommand());
+			insrtTag.execute();
+		}
+
 	}
 }

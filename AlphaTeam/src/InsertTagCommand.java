@@ -7,12 +7,20 @@
  *
  */
 public class InsertTagCommand implements Command {
+	
+	private HTMLConstruct tag;
 
 	/**
 	 * 
 	 */
-	public InsertTagCommand(String s) {
-		// TODO Auto-generated constructor stub
+	public InsertTagCommand(String tagStr) {
+		if(tagStr.contains("_b"))
+			tag = new HTMLBoldTag();
+		if(tagStr.contains("_i"))
+			tag = new HTMLItalicTag();
+		if(tagStr.contains("_HTML"))
+			tag = new HTMLTag();
+		
 	}
 
 	/* (non-Javadoc)
@@ -20,8 +28,12 @@ public class InsertTagCommand implements Command {
 	 */
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-		String w = new String();
+		Buffer b = Buffer.getBuffer(GUI_Main.getSelectedTab());
+		int pos = b.getTextArea().getCaretPosition();
+		b.getTextArea().insert(tag.getSTag(), pos);
+		b.getTextArea().insert(tag.getETag(), b.getTextArea().getCaretPosition());
+
+		b.getTextArea().setCaretPosition(pos + tag.getSTag().length());
 	}
 
 }
