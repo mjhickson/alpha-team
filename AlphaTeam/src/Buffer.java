@@ -28,6 +28,7 @@ class Buffer {
 	private String fileName;
 	private boolean neverSaved, saved;
 	private static ArrayList<Buffer> bufferList;
+	private HTMLConstruct head;
 	
 	/*
 	 * Class default constructor sets global variables to default parameters
@@ -36,6 +37,7 @@ class Buffer {
 		disWindow = new JTextArea();
 		scroller = new JScrollPane(disWindow);
 		plainText = "<HTML>\n</HTML>";
+		head = new HTMLTag();
 		fileName = "Untitled.html";
 		neverSaved = true;
 		saved = false;
