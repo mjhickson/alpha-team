@@ -61,17 +61,15 @@ public class HTMLBoldTag implements HTMLConstruct {
 	}
 	
 	//Recursive function to return the composite structure as a string
-	public String getHTML(String htmlString){
-		String html = "";
-		
-		html = sTag;
+	public String getHTML(String html, boolean isIndenting, int in){	
+		html += "\n" + sTag;
 		
 		if ( childConstructs.size() == 0){
 			html += text;
 		} else{
 			
 			for ( int i = 0; i < childConstructs.size(); i++){
-				htmlString += childConstructs.get(i).getHTML(htmlString);
+				html += childConstructs.get(i).getHTML(html);
 			}
 			
 		}
