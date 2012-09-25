@@ -44,4 +44,6 @@ public interface HTMLConstruct {
 	//Gets the end tag
 	public String getETag();
 	
+	//Gets the HTML tag composite structure as a String
+	public String getHTML(String html);
 }
