@@ -1,5 +1,5 @@
 /**
- * HTMLTableTag.java
+ * HTMLDefinitionItemTag.java
  */
 
 /**
@@ -8,7 +8,8 @@
 
 import java.util.ArrayList;
 
-public class HTMLTableTag implements HTMLConstruct {
+
+public class HTMLDefinitionItemTag {
 
 	private String tagName;
 	private String sTag;
@@ -17,7 +18,7 @@ public class HTMLTableTag implements HTMLConstruct {
 	private int indentNum;
 	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
-	public HTMLTableTag(){
+	public HTMLDefinitionItemTag(){
 		tagName = "b";
 		sTag = "<b>";
 		eTag = "</b>";

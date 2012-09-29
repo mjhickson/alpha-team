@@ -20,30 +20,60 @@ import java.util.ArrayList;
 
 public interface HTMLConstruct {
 	
-	//Adds a child HTMLConstruct
+	/**
+	 * Adds a child HTMLConstruct.
+	 * @param HTMLConstruct construct
+	 */
 	public void add(HTMLConstruct construct);
 	
-	//Removes a childHTMLConstruct
+	/**
+	 * Removes a childHTMLConstruct.
+	 * @param HTMLConstruct construct
+	 */
 	public void remove(HTMLConstruct construct);
 	
-	//Returns reference to child
-	public ArrayList<HTMLConstruct> getChild();
-	
-	//Sets the text in between HTML Tags
+	/**
+	 * Sets the text in between HTML Tags.
+	 * @param String text
+	 */
 	public void setText(String text);
 	
-	//Gets the text in between HTML Tags
+	/**
+	 * Returns the text in between the HTML Tag (ex: <b>This part of the tag.</b>).
+	 * @return String text
+	 */
 	public String getText();
 	
-	//Gets the tag name (identifier for the HTML tag)
+	/**
+	 * Returns the tag name (identifier for the HTML tag).
+	 * @return String tagName
+	 */
 	public String getTagName();
 	
-	//Gets the start tag
+	/**
+	 * Return the start tag of a construct (ex: <b>).
+	 * @return String sTag
+	 */
 	public String getSTag();
 	
-	//Gets the end tag
+	/**
+	 * Returns the end tag of a construct (ex: </b>).
+	 * @return String eTag
+	 */
 	public String getETag();
 	
-	//Gets the HTML tag composite structure as a String
-	public String getHTML(String html);
+	/**
+	 * Returns an ArrayList of the child tags.
+	 * @return ArrayList<HTMLConstruct> childConstructs
+	 */
+	public ArrayList<HTMLConstruct> getChild();
+	
+	/**
+	 * Recursive function to get the HTML tag composite structure as a String.
+	 * @param html - the HTML as a string.
+	 * @param isIndenting - boolean for whether the structure should be indented or not.
+	 * @param iNum - int for the number of indents before the tag should be inserted (initial value should be 0).
+	 * @return String html
+	 */
+	public String getHTML(String html, boolean isIndenting, int iNum);
 }
