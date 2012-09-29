@@ -11,9 +11,17 @@ public class HTMLHeadTag implements HTMLConstruct {
 	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLHeadTag(){
-		tagName = "b";
-		sTag = "<b>";
-		eTag = "</b>";
+		tagName = "h";
+		sTag = "<h1>";
+		eTag = "</h1>";
+		indentNum = -1;
+		text = "";
+	}
+	
+	public HTMLHeadTag(int i) {
+		tagName = "h" + i;
+		sTag = "<h" + i + ">";
+		eTag = "</h" + i + ">";
 		indentNum = -1;
 		text = "";
 	}

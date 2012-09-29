@@ -29,11 +29,7 @@ public class InsertTagCommand implements Command {
 	@Override
 	public void execute() {
 		Buffer b = Buffer.getBuffer(GUI_Main.getSelectedTab());
-		int pos = b.getTextArea().getCaretPosition();
-		b.getTextArea().insert(tag.getSTag(), pos);
-		b.getTextArea().insert(tag.getETag(), b.getTextArea().getCaretPosition());
-
-		b.getTextArea().setCaretPosition(pos + tag.getSTag().length());
+		b.insertTag(tag);
 	}
 
 }

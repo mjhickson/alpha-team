@@ -6,7 +6,7 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
-/*
+/**
  * Author: Stephen Brewster Group 1
  * Date:   9/17/2012
  * Description:

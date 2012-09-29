@@ -4,7 +4,7 @@
 
 /**
  * @author mhickson
- *
+ * @author Stephen Brewster
  */
 public class SaveCommand implements Command {
 	
@@ -17,7 +17,7 @@ public class SaveCommand implements Command {
 		saveAs = as;
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see Command#execute()
 	 */
 	@Override

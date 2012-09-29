@@ -2,11 +2,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 
-/*
+/**
  * Author: Stephen Brewster Group 1
  * Date:   9/17/2012
  * Description:
  * 		Supplies the JMenuBar for the HTML Editor
+ * @author Stephen Brewster
  */
 
 public class GUI_MenuBar extends JMenuBar{

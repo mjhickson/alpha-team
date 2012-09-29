@@ -18,11 +18,19 @@ public class HTMLTableTag implements HTMLConstruct {
 	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLTableTag(){
-		tagName = "b";
-		sTag = "<b>";
-		eTag = "</b>";
+		tagName = "table";
+		sTag = "<table>";
+		eTag = "</table>";
 		indentNum = -1;
 		text = "";
+	}
+	
+	/**
+	 * Constructor for building tr and td structure
+	 * @param command Original action command to be parsed for dimensions data
+	 */
+	public HTMLTableTag(String command) {
+		
 	}
 	
 	/**

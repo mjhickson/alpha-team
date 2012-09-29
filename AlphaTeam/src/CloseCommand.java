@@ -1,21 +1,20 @@
 /**
- * 
- */
-
-/**
+ * Executes the close command functions, checks for save states, saves if necessary
  * @author mhickson
+ * @author Stephen Brewster
  *
  */
 public class CloseCommand implements Command {
 
 	/**
-	 * 
+	 * Default constructor
 	 */
 	public CloseCommand() {
 		// TODO Auto-generated constructor stub
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * 
 	 * @see Command#execute()
 	 */
 	@Override
@@ -33,6 +32,10 @@ public class CloseCommand implements Command {
 		} 
 	}//execute
 	
+	/**
+	 * closes the tab in the GUI and removes the Buffer from the list
+	 * @param index location of tab/buffer to be removed
+	 */
 	private void close(int index) {
 		Buffer.removeBuffer(index);
 		GUI_Main.removeTab(index);

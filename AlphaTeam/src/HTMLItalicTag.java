@@ -18,9 +18,9 @@ public class HTMLItalicTag implements HTMLConstruct {
 	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLItalicTag(){
-		tagName = "b";
-		sTag = "<b>";
-		eTag = "</b>";
+		tagName = "i";
+		sTag = "<i>";
+		eTag = "</i>";
 		indentNum = -1;
 		text = "";
 	}

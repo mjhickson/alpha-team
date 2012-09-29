@@ -4,7 +4,7 @@
 
 /**
  * @author mhickson
- *
+ * @author Stephen Brewster
  */
 public class WrapCommand implements Command {
 
@@ -15,7 +15,7 @@ public class WrapCommand implements Command {
 		// TODO Auto-generated constructor stub
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see Command#execute()
 	 */
 	@Override

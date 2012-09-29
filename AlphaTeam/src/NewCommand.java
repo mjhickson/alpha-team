@@ -4,7 +4,7 @@
 
 /**
  * @author mhickson
- *
+ * @author Stephen Brewster
  */
 public class NewCommand implements Command {
 
@@ -15,7 +15,7 @@ public class NewCommand implements Command {
 		
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see Command#execute()
 	 */
 	@Override

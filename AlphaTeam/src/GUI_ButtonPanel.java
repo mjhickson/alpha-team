@@ -1,3 +1,7 @@
+/**
+ * Creates the quick insert button panel for the HTML editor
+ * @author Stephen Brewster
+ */
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;

@@ -6,7 +6,7 @@ import javax.swing.JFileChooser;
 
 /**
  * @author mhickson
- *
+ * @author Stephen Brewster
  */
 public class OpenCommand implements Command {
 

@@ -4,11 +4,12 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.border.*;
 
-/*
+/**
  * Author: Stephen Brewster Group 1
  * Date:   9/17/2012
  * Description:
  * 		Provides formatting for GUI components of the HTML Editor
+ * @author Stephen Brewster
  */
 
 public class Formatter {

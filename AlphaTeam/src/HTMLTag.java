@@ -20,9 +20,9 @@ public class HTMLTag implements HTMLConstruct {
 	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLTag(){
-		tagName = "b";
-		sTag = "<b>";
-		eTag = "</b>";
+		tagName = "html";
+		sTag = "<HTML>";
+		eTag = "</HTML>";
 		indentNum = -1;
 		text = "";
 	}

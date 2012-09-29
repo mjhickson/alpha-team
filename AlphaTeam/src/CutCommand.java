@@ -4,7 +4,7 @@
 
 /**
  * @author mhickson
- *
+ * @author Stephen Brewster
  */
 public class CutCommand implements Command {
 
@@ -15,7 +15,7 @@ public class CutCommand implements Command {
 		// TODO Auto-generated constructor stub
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see Command#execute()
 	 */
 	@Override

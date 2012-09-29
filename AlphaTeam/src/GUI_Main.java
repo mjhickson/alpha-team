@@ -9,11 +9,12 @@ import java.util.List;
 
 import javax.swing.*;
 
-/*
+/**
  * Author: Stephen Brewster Group 1
  * Date:   9/17/2012
  * Description:
  * 		Builds GUI interface for the HTML Editor
+ * @author Stephen Brewster
  */
 
 public class GUI_Main extends JFrame {
@@ -51,12 +52,16 @@ public class GUI_Main extends JFrame {
 		
 	}
 	
+	/**
+	 * Adds a new buffer to the tab pane
+	 * @param buf Buffer object to be added to GUI
+	 */
 	public static void addBuffer(Buffer buf) {
 		tabs.add(buf.getFileName(), buf.getWindow());
 		tabs.setSelectedIndex(tabs.getTabCount() - 1); //Set new tab as currently selected
 	}
 	
-	/*
+	/**
 	 * Public method which saves the currently selected buffer content to its file
 	 */
 	public static int getSelectedTab() {
@@ -68,7 +73,7 @@ public class GUI_Main extends JFrame {
 		}
 	}
 	
-	/*
+	/**
 	 * Removes tab at desired index
 	 * @param int Index of the tab to be removed
 	 */
@@ -76,6 +81,9 @@ public class GUI_Main extends JFrame {
 		tabs.remove(i);
 	}
 	
+	/**
+	 * Updates the file names on the tabs
+	 */
 	public static void updateTabs() {
 		for(int i = 0; i < tabs.getTabCount(); i++) {
 			tabs.setTitleAt(i, Buffer.getBuffer(i).getFileName()); 	
@@ -83,6 +91,10 @@ public class GUI_Main extends JFrame {
 
 	}
 	
+	/**
+	 * Main method runs HTML Editor
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		//Set look and feel
 	    try {
