@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
@@ -21,7 +23,7 @@ import javax.swing.JTextArea;
  */
 
 
-class Buffer {
+class Buffer implements Observer {
 	private JTextArea disWindow;
 	private JScrollPane scroller;
 	private File file;
@@ -92,8 +94,8 @@ class Buffer {
 	 * @param as Boolean true value triggers "Save As" functions
 	 * @return boolean Affirmation of successful save
 	 */
-	public boolean saveFile(boolean as) {
-		if(buffState.saveFile(as)) {
+	public boolean saveFile() {
+		if(buffState.saveFile(neverSaved)) {
 			neverSaved = false;
 			saved = true;
 			return true;
@@ -182,6 +184,11 @@ class Buffer {
 	
 	public void setWrapping(boolean b) {
 		disWindow.setLineWrap(b);
+	}
+
+	@Override
+	public void update(Observable none, Object text) {
+		plainText = text.toString();		
 	}
 	
 }

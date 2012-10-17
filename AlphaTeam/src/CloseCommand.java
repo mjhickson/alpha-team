@@ -26,7 +26,7 @@ public class CloseCommand implements Command {
 		if(b.getSaved()) {
 			close(index);
 		} else if(b.getNeverSaved() || !b.getSaved()){ //If buffer has never been saved, save as
-			SaveCommand saveCommand = new SaveCommand(b.getNeverSaved());
+			SaveCommand saveCommand = new SaveCommand();
 			saveCommand.execute();
 			close(index);
 		} 

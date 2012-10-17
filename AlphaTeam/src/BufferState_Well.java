@@ -68,12 +68,7 @@ class BufferState_Well extends BufferState {
 	 * Inserts an HTML tag into the buffer
 	 * @param html HTMLConstruc to be inserted
 	 */
-	public void insertTag(HTMLConstruct html) {
-		JTextArea temp = parent.getTextArea();
-		int pos = temp.getCaretPosition();
-		temp.insert(html.getSTag(), pos);
-		temp.insert(html.getETag(), temp.getCaretPosition());
-
-		temp.setCaretPosition(pos + html.getSTag().length());
+	public void insertTag(HTMLConstruct tag) {
+		GUI_Main.insertTag(tag);
 	}
 }

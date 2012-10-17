@@ -22,7 +22,7 @@ public class NewCommand implements Command {
 	public void execute() {
 		Buffer b = new Buffer();
 		Buffer.addBuffer(b);
-		GUI_Main.addBuffer(b);
+		GUI_Main.registerObserver(b);
 	}
 
 }

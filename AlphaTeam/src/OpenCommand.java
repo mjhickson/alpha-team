@@ -27,7 +27,7 @@ public class OpenCommand implements Command {
        
         Buffer b = new Buffer(fChooser.getSelectedFile());
         Buffer.addBuffer(b);
-        GUI_Main.addBuffer(b);
+        GUI_Main.registerObserver(b);
 	}
 
 }
