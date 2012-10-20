@@ -26,24 +26,27 @@ public class GUI_ActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("New")) {
-			newCommand.execute();
+			newCommand.execute(); //Opens a new html buffer/file
 		}
 			
 		if(e.getActionCommand().equals("Open")) {
-			openCommand.execute();
+			openCommand.execute(); //Opens an existing html buffer/file
 		}
 		
 		if(e.getActionCommand().equals("Save")) {
+			//Saves the current document using its current filename
 			SaveCommand saveCommand = new SaveCommand(false);
 			saveCommand.execute();
 		}
 		
 		if(e.getActionCommand().equals("Save As")) {
+			//Saves the current document using a new filename
 			SaveCommand saveCommand = new SaveCommand(true);
 			saveCommand.execute();
 		}
 		
 		if(e.getActionCommand().equals("Close")) {
+			//Closes the current document, saves first if necessary/desired
 			closeCommand.execute();
 		}
 		
@@ -59,31 +62,70 @@ public class GUI_ActionListener implements ActionListener {
 			pasteCommand.execute();
 		}
 		
+		//Inserts html tags into the current document
 		if(e.getActionCommand().contains("insert_")) {
 			HTMLConstruct tag;
 				tag = new HTMLTag(); //Provide default tag
 			String tagStr = e.getActionCommand();
 			InsertTagCommand insrtTag;
 			
+			//Inserts b (bold) tag
 			if(tagStr.contains("_b")) {
 				tag = new HTMLBoldTag();
 					insrtTag = new InsertTagCommand(tag);
 					insrtTag.execute();
 			}
 			
+			//Inserts i (italic) tag
 			if(tagStr.contains("_i")) {
 				tag = new HTMLItalicTag();
 					insrtTag = new InsertTagCommand(tag);
 					insrtTag.execute();
 			}
 			
+			//Inserts an HTML tag
 			if(tagStr.contains("_HTML")) {
 				tag = new HTMLTag();
 					insrtTag = new InsertTagCommand(tag);
 					insrtTag.execute();
 			}
 			
-			//If a table has been inserted
+			//Inserts header tag
+			if(tagStr.contains("_head")) {
+				tag = new HTMLHeadTag();
+					insrtTag = new InsertTagCommand(tag);
+					insrtTag.execute();
+			}
+			
+			//Inserts ordered, unordered and dictionary Lists
+			if(tagStr.contains("_list")) {
+				//Inserts an ordered list
+				if(tagStr.contains("_ordered")) {
+					tag = new HTMLOrderedListTag();
+						insrtTag = new InsertTagCommand(tag);
+						insrtTag.execute();
+				}
+				
+				//Inserts an unordered list
+				if(tagStr.contains("_unordered")) {
+					tag = new HTMLUnorderedListTag();
+					insrtTag = new InsertTagCommand(tag);
+					insrtTag.execute();
+				}
+				
+				//Inserts a dictionary list
+				if(tagStr.contains("_dictionary")) {
+					tag = new HTMLDefinitionListTag();
+					insrtTag = new InsertTagCommand(tag);
+					insrtTag.execute();
+				}
+			}
+			
+			/*
+			Inserts a table tag including tr/td tags.
+			Extracts dimensions from the action command and builds
+			table structure
+			*/
 			if(tagStr.contains("_Table")) {
 				//Split the command to extract table dimensions
 				String tableParse[];
@@ -101,22 +143,23 @@ public class GUI_ActionListener implements ActionListener {
 					tag = new HTMLTableRowTag();
 						insrtTag = new InsertTagCommand(tag);
 						insrtTag.execute();
+					
 					//Insert necessary number of td tags
 					for(int j = 0; j < Integer.parseInt(tableParse[2]); j++) {
 						tag = new HTMLTableDataTag();
 							insrtTag = new InsertTagCommand(tag);
 							insrtTag.execute();
+						
 						//Shift caret to avoid unwanted nesting of td tags
 						GUI_BufferWindow.getWindow(index).
 											shiftCaret(tag.getETag().length());
-					}
+					}//for(j)
+					
 					//Shift caret to end of </tr> to set up for next row
-					GUI_BufferWindow.getWindow(index).
-								shiftCaret((tag.getETag().length() *   
-										   	  (Integer.parseInt(tableParse[2]) - 1)));					
-				}//for				
-			}//if _table
-		}//if _insert
+					GUI_BufferWindow.getWindow(index).shiftCaret(5);
+				}//for(i)		
+			}//table insertion
+		}//insert
 		
 	}//actionperformed
 }//class

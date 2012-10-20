@@ -37,7 +37,6 @@ public class GUI_MenuBar extends JMenuBar{
 						bold, 
 						italic, 
 						header, 
-						body,
 						specify,
 						close;
 	private JMenu[] tableGrid;
@@ -154,15 +153,16 @@ public class GUI_MenuBar extends JMenuBar{
 				italic.setActionCommand("insert_i");
 			header = new JMenuItem("Header");
 				header.addActionListener(actionListener);
-				header.setActionCommand("insert_h1");
-			body = new JMenuItem("Body");
-				body.addActionListener(actionListener);
+				header.setActionCommand("insert_head");
 			bulleted = new JMenuItem("Bullets");
 				bulleted.addActionListener(actionListener);
+				bulleted.setActionCommand("insert_list_unordered");
 			numbered = new JMenuItem("Numbered");
 				numbered.addActionListener(actionListener);
+				numbered.setActionCommand("insert_list_ordered");
 			dictionary = new JMenuItem("Dictionary");
-				dictionary.addActionListener(actionListener);					
+				dictionary.addActionListener(actionListener);	
+				dictionary.setActionCommand("insert_list_dictionary");
 					
 		//help
 			aboutEditor = new JMenuItem("About");
@@ -200,7 +200,6 @@ public class GUI_MenuBar extends JMenuBar{
 			listMenu.add(numbered);
 			listMenu.add(dictionary);
 			headersMenu.add(header);
-			headersMenu.add(body);
 			textMenu.add(bold);
 			textMenu.add(italic);
 			

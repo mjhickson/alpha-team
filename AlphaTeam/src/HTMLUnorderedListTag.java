@@ -19,9 +19,9 @@ public class HTMLUnorderedListTag implements HTMLConstruct {
 	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLUnorderedListTag(){
-		tagName = "b";
-		sTag = "<b>";
-		eTag = "</b>";
+		tagName = "ul";
+		sTag = "<ul>";
+		eTag = "</ul>";
 		indentNum = -1;
 		text = "";
 	}

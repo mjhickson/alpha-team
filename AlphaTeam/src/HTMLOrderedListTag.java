@@ -18,9 +18,9 @@ public class HTMLOrderedListTag implements HTMLConstruct {
 	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLOrderedListTag(){
-		tagName = "b";
-		sTag = "<b>";
-		eTag = "</b>";
+		tagName = "ol";
+		sTag = "<ol>";
+		eTag = "</ol>";
 		indentNum = -1;
 		text = "";
 	}
