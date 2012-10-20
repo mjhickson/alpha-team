@@ -26,7 +26,7 @@ public class CloseCommand implements Command {
 		if(b.getSaved()) {
 			close(index);
 		} else if(b.getNeverSaved() || !b.getSaved()){ //If buffer has never been saved, save as
-			SaveCommand saveCommand = new SaveCommand();
+			SaveCommand saveCommand = new SaveCommand(true);
 			saveCommand.execute();
 			close(index);
 		} 
@@ -39,5 +39,6 @@ public class CloseCommand implements Command {
 	private void close(int index) {
 		Buffer.removeBuffer(index);
 		GUI_Main.removeTab(index);
+		GUI_BufferWindow.removeWindow(index);
 	}
 }

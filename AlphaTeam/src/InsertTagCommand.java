@@ -29,6 +29,7 @@ public class InsertTagCommand implements Command {
 	@Override
 	public void execute() {
 		int i = GUI_Main.getSelectedTab();
+		GUI_BufferWindow.getWindow(i).insertTag(tag);
 		Buffer.getBuffer(i).insertTag(tag);
 	}
 

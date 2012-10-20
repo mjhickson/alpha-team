@@ -19,7 +19,6 @@ class GUI_KeyListener implements KeyListener {
 
 	@Override
 	public void keyTyped(java.awt.event.KeyEvent e) {
-		System.out.print("key pressed");
-		
+		int index = GUI_Main.getSelectedTab();
 	}
 }

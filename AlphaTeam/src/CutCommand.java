@@ -21,7 +21,7 @@ public class CutCommand implements Command {
 	@Override
 	public void execute() {
 		Buffer b = Buffer.getBuffer(GUI_Main.getSelectedTab());
-		b.getTextArea().cut();
+		//b.getTextArea().cut();
 	}
 
 }

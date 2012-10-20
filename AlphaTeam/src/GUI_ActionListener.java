@@ -34,12 +34,12 @@ public class GUI_ActionListener implements ActionListener {
 		}
 		
 		if(e.getActionCommand().equals("Save")) {
-			SaveCommand saveCommand = new SaveCommand();
+			SaveCommand saveCommand = new SaveCommand(false);
 			saveCommand.execute();
 		}
 		
 		if(e.getActionCommand().equals("Save As")) {
-			SaveCommand saveCommand = new SaveCommand();
+			SaveCommand saveCommand = new SaveCommand(true);
 			saveCommand.execute();
 		}
 		

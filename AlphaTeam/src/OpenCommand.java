@@ -22,12 +22,21 @@ public class OpenCommand implements Command {
 	 */
 	@Override
 	public void execute() {
+		//Allow user to choose file to open
 		JFileChooser fChooser = new JFileChooser();
         fChooser.showOpenDialog(null);
        
+        //Create buffer and view
         Buffer b = new Buffer(fChooser.getSelectedFile());
-        Buffer.addBuffer(b);
-        GUI_Main.registerObserver(b);
+		GUI_BufferWindow aWindow  = new GUI_BufferWindow(b.getFileName()); 
+       
+		//Add elements to lists
+		GUI_Main.addBuffer(aWindow); //Add bufferwindow to GUI
+		GUI_BufferWindow.addWindow(aWindow); //Add bufferwindow to static list
+		Buffer.addBuffer(b);
+		
+		//Add file text to view
+		aWindow.setText(b.getText());
 	}
 
 }

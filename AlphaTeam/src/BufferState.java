@@ -10,13 +10,6 @@ abstract class BufferState {
 	}
 	
 	/**
-	 * Outputs text to buffer window
-	 */
-	public void diplayContent() {
-		
-	}
-	
-	/**
 	 * Saves the file, displays error message if HTML is ill-formed
 	 */
 	public boolean saveFile(boolean as) {
@@ -26,7 +19,7 @@ abstract class BufferState {
 	/**
 	 * Inserts a tag into the Buffer, error message if HTML is ill-formed
 	 */
-	public void insertTag(HTMLConstruct html) {
-		
+	public String insertTag(HTMLConstruct html) {
+		return null;
 	}
 }

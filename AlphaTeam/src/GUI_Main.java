@@ -1,15 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.List;
-
 import javax.swing.*;
+import java.util.Observable;
 
 /**
  * Author: Stephen Brewster Group 1
@@ -19,24 +13,20 @@ import javax.swing.*;
  * @author Stephen Brewster
  */
 
-public class GUI_Main extends JFrame {
+class GUI_Main extends JFrame {
 	
+	/**
+	 * 
+	 */
 	private GUI_ActionListener actionListener;
 	private GUI_MenuBar menuBar;
 	private Formatter formatter;
-	private static GUI_KeyListener keyListen;
 	private static JTabbedPane tabs;
-	private static ArrayList<Object> observerList;
-	private static ArrayList<JScrollPane> scrollers;
-	private static ArrayList<JTextArea> textAreas;
+
 
 	public GUI_Main() {
 		formatter = new Formatter();
 		actionListener = new GUI_ActionListener();
-		keyListen = new GUI_KeyListener();
-		observerList = new ArrayList<Object>();
-		scrollers = new ArrayList<JScrollPane>();
-		textAreas = new ArrayList<JTextArea>();
 		
 		menuBar = new GUI_MenuBar();
 		setJMenuBar(menuBar); //Set menuBar to the JFrame
@@ -80,9 +70,6 @@ public class GUI_Main extends JFrame {
 	 */
 	public static void removeTab(int i) {
 		tabs.remove(i);
-		observerList.remove(i);
-		scrollers.remove(i);
-		textAreas.remove(i);
 	}
 	
 	/**
@@ -90,34 +77,16 @@ public class GUI_Main extends JFrame {
 	 */
 	public static void updateTabs() {
 		for(int i = 0; i < tabs.getTabCount(); i++) {
-			tabs.setTitleAt(i, Buffer.getBuffer(i).getFileName()); 	
+			tabs.setTitleAt(i, GUI_BufferWindow.getWindow(i).getTitle()); 	
 		}
+	}
 
-	}
-	
 	/**
-	 * Registers and stores a new observer
-	 * @param o Observer to be added
+	 * Adds a new buffer to the GUI
+	 * @param win JScrollPane window object
 	 */
-	public static void registerObserver(Buffer o) {
-		observerList.add(o);
-		textAreas.add(new JTextArea());
-		textAreas.get(textAreas.size() - 1).addKeyListener(keyListen);
-		scrollers.add(new JScrollPane(textAreas.get(textAreas.size() - 1)));
-		tabs.add(o.getFileName(), scrollers.get(scrollers.size() - 1));
-		tabs.setSelectedIndex(tabs.getTabCount() - 1); //Set new tab as currently selected
-		
-	}
-	
-	/**
-	 * Inserts a tag into the current window and notifies observers
-	 * @param tag HTML tag to be inserted
-	 */
-	public static void insertTag(HTMLConstruct tag) {
-		int i = tabs.getSelectedIndex();
-		textAreas.get(i).insert(tag.getSTag(), textAreas.get(i).getCaretPosition());
-		textAreas.get(i).insert(tag.getSTag(), textAreas.get(i).getCaretPosition());
-		((Buffer)observerList.get(i)).update(null, textAreas.get(i).getText());
+	public static void addBuffer(GUI_BufferWindow win) {
+		tabs.add(win.getWindow(), win.getTitle());
 	}
 	
 	/**

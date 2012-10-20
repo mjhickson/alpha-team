@@ -24,10 +24,11 @@ class BufferState_Well extends BufferState {
 	}
 	
 	/**
+
 	 * Displays the HTML content using indented formatting
 	 */
 	public void displayContent() {
-		parent.getTextArea().setText(parent.getHead().getHTML("", true, 0));
+		parent.getTextArea().setText(parent.getHead().getHTML(""));
 	}
 	
 	/**

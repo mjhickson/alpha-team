@@ -21,7 +21,7 @@ public class CopyCommand implements Command {
 	@Override
 	public void execute() {
 		Buffer b = Buffer.getBuffer(GUI_Main.getSelectedTab());
-		b.getTextArea().copy();
+		//b.getTextArea().copy();
 	}
 
 }

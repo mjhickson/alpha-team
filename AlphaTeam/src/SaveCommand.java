@@ -13,7 +13,8 @@ public class SaveCommand implements Command {
 	/**
 	 * 
 	 */
-	public SaveCommand() {
+	public SaveCommand(boolean as) {
+		saveAs = as;
 	}
 
 	/**
@@ -22,7 +23,7 @@ public class SaveCommand implements Command {
 	@Override
 	public void execute() {
 		int index = GUI_Main.getSelectedTab();
-		Buffer.getBuffer(index).saveFile();
+		Buffer.getBuffer(index).saveFile(saveAs);
 		GUI_Main.updateTabs();
 	}
 

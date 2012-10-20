@@ -5,12 +5,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-
-import javax.swing.JFileChooser;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 /**
  * Author: Stephen Brewster Group 1
@@ -23,23 +17,20 @@ import javax.swing.JTextArea;
  */
 
 
-class Buffer implements Observer {
-	private JTextArea disWindow;
-	private JScrollPane scroller;
+class Buffer {
 	private File file;
 	private String plainText;
 	private String fileName;
 	private boolean neverSaved, saved, wellFormState;
-	private static ArrayList<Buffer> bufferList;
 	private HTMLConstruct head;
 	private BufferState buffState;
+	private static ArrayList<Buffer> bufferList;	
 	
 	/**
 	 * Class default constructor sets global variables to default parameters
 	 */
 	public Buffer() {
-		disWindow = new JTextArea();
-		scroller = new JScrollPane(disWindow);
+		plainText = "";
 		head = new HTMLTag();
 		fileName = "Untitled.html";
 		neverSaved = true;
@@ -57,8 +48,6 @@ class Buffer implements Observer {
 	 */
 	public Buffer(File f) {
 		plainText = "";
-		disWindow = new JTextArea();
-		scroller = new JScrollPane(disWindow);
 		file = f;
 		fileName = file.getPath();
 		neverSaved = false;
@@ -77,16 +66,15 @@ class Buffer implements Observer {
 	 * the appropriate global variables
 	 */
 	private void readInFile() {
-		
+		plainText = "";
 		String temp = "";
 		try {
 			BufferedReader bufferIn = new BufferedReader(new FileReader(file));
 			while ((temp = bufferIn.readLine()) != null) {
-				disWindow.append(temp);
+				plainText += temp;
 			}
 			bufferIn.close();
 		}catch(IOException e) {}
-
 	}
 	
 	/**
@@ -94,8 +82,8 @@ class Buffer implements Observer {
 	 * @param as Boolean true value triggers "Save As" functions
 	 * @return boolean Affirmation of successful save
 	 */
-	public boolean saveFile() {
-		if(buffState.saveFile(neverSaved)) {
+	public boolean saveFile(boolean as) {
+		if(buffState.saveFile(as)) {
 			neverSaved = false;
 			saved = true;
 			return true;
@@ -113,44 +101,13 @@ class Buffer implements Observer {
 	}
 	
 	/**
-	 * Adds a buffer to the list of currently loaded buffers
-	 * @param b Buffer object to be added to the list
-	 */
-	public static void addBuffer(Buffer b) {
-		bufferList.add(b);
-	}
-	
-	/**
-	 * Removes the buffer at the index location 'i'
-	 * @param i Index location of the buffer to be removed
-	 */
-	public static void removeBuffer(int i) {
-		bufferList.remove(i);
-	}
-	
-	/**
-	 * Sets the text in the output window with the global variable 'plainText'
-	 */
-	private void displayContent() {
-		buffState.diplayContent();
-	}
-	
-	/**
 	 * Inserts an HTML tag into the buffer
 	 * @param html HTMLConstruct to be inserted
 	 */
 	public void insertTag(HTMLConstruct html) {
-		buffState.insertTag(html);
+		setText(buffState.insertTag(html));
 	}
 	
-	public JScrollPane getWindow() {
-		return scroller;
-	}
-	
-	public JTextArea getTextArea() {
-		return disWindow;
-	}
-
 	public String getFileName() {
 		return fileName;
 	}
@@ -181,14 +138,28 @@ class Buffer implements Observer {
 	public boolean getSaved() {
 		return saved;
 	}
-	
-	public void setWrapping(boolean b) {
-		disWindow.setLineWrap(b);
-	}
 
-	@Override
-	public void update(Observable none, Object text) {
-		plainText = text.toString();		
+	public String getText() {
+		return plainText;
 	}
 	
+	public void setText(String t) {
+		plainText = t;
+	}
+	
+	/**
+	 * Adds a buffer to the list of currently loaded buffers
+	 * @param b Buffer object to be added to the list
+	 */
+	public static void addBuffer(Buffer b) {
+		bufferList.add(b);
+	}
+	
+	/**
+	 * Removes the buffer at the index location 'i'
+	 * @param i Index location of the buffer to be removed
+	 */
+	public static void removeBuffer(int i) {
+		bufferList.remove(i);
+	}
 }
