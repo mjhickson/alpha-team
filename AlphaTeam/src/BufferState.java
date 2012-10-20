@@ -19,7 +19,6 @@ abstract class BufferState {
 	/**
 	 * Inserts a tag into the Buffer, error message if HTML is ill-formed
 	 */
-	public String insertTag(HTMLConstruct html) {
-		return null;
+	public void insertTag(HTMLConstruct html) {
 	}
 }

@@ -105,7 +105,7 @@ class Buffer {
 	 * @param html HTMLConstruct to be inserted
 	 */
 	public void insertTag(HTMLConstruct html) {
-		setText(buffState.insertTag(html));
+		
 	}
 	
 	public String getFileName() {

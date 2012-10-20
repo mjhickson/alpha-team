@@ -6,13 +6,16 @@ class GUI_BufferWindow {
 	private JTextArea disWindow;
 	private JScrollPane scroller;
 	private String title;
+	private GUI_KeyListener keyListen;
 	private static ArrayList<GUI_BufferWindow> bufferWindows;
 	
 	public GUI_BufferWindow(String name) {
 		if(bufferWindows == null)
 			bufferWindows = new ArrayList<GUI_BufferWindow>();
-			
+		
+		keyListen = new GUI_KeyListener();	
 		disWindow = new JTextArea();
+		disWindow.addKeyListener(keyListen);
 		scroller = new JScrollPane(disWindow);
 		title = name;
 	}
@@ -26,8 +29,18 @@ class GUI_BufferWindow {
 		disWindow.setText(text);
 	}
 	
+	public String getText() {
+		return disWindow.getText();
+	}
+	
 	public JScrollPane getWindow() {
 		return scroller;
+	}
+	
+	public void update() {
+		//disWindow.updateUI();
+		//disWindow.revalidate();
+		//disWindow.repaint();
 	}
 	
 	public String getTitle() {

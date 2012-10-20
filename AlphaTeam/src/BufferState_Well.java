@@ -28,7 +28,7 @@ class BufferState_Well extends BufferState {
 	 * Displays the HTML content using indented formatting
 	 */
 	public void displayContent() {
-		parent.getTextArea().setText(parent.getHead().getHTML(""));
+		//parent.getText().setText(parent.getHead().getHTML(""));
 	}
 	
 	/**
@@ -36,27 +36,22 @@ class BufferState_Well extends BufferState {
 	 * @param as Triggers the save as functions
 	 */
 	public boolean saveFile(boolean as) {
-		String fileName = parent.getFileName();
-		boolean neverSaved = parent.getNeverSaved();
-		JTextArea disWindow = parent.getTextArea();
-		
-		if(as || neverSaved) {
+		if(as || parent.getNeverSaved()) {
 			JFileChooser fChooser = new JFileChooser();
 			fChooser.setApproveButtonText("Save As");
 			fChooser.showOpenDialog(null);
-			fileName = fChooser.getSelectedFile().getPath();
+			parent.setFileName(fChooser.getSelectedFile().getPath());
       
 			//Check if file ends with .html and add if necessary
-			if(!fileName.contains(".html"))
-				fileName += ".html";
-			parent.setFileName(fileName);
+			if(!parent.getFileName().contains(".html"))
+				parent.setFileName(parent.getFileName() + ".html");
 			parent.setNeverSaved(false); //File has been saved at least once
 		}//if
 		
 		//Save file
 		try {
-			BufferedWriter bufferOut = new BufferedWriter(new FileWriter(fileName));
-			bufferOut.write(parent.getTextArea().getText());
+			BufferedWriter bufferOut = new BufferedWriter(new FileWriter(parent.getFileName()));
+			bufferOut.write(parent.getText());
 	        bufferOut.close();
 	        
 	        return true; //Notify calling object that save was successful
@@ -70,6 +65,6 @@ class BufferState_Well extends BufferState {
 	 * @param html HTMLConstruc to be inserted
 	 */
 	public void insertTag(HTMLConstruct tag) {
-		GUI_Main.insertTag(tag);
+		//GUI_Main.insertTag(tag);
 	}
 }

@@ -30,7 +30,7 @@ public class InsertTagCommand implements Command {
 	public void execute() {
 		int i = GUI_Main.getSelectedTab();
 		GUI_BufferWindow.getWindow(i).insertTag(tag);
-		Buffer.getBuffer(i).insertTag(tag);
+		Buffer.getBuffer(i).setText(GUI_BufferWindow.getWindow(i).getText());
 	}
 
 }
