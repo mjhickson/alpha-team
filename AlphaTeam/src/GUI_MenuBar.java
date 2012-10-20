@@ -80,7 +80,7 @@ public class GUI_MenuBar extends JMenuBar{
 					tableGridSelect[i][j] = new JMenuItem(i + " x " + j);
 					tableGrid[i].add(tableGridSelect[i][j]);
 					tableGridSelect[i][j].addActionListener(actionListener);
-					tableGridSelect[i][j].setActionCommand("insert_" + i + "," + j);
+					tableGridSelect[i][j].setActionCommand("insert_Table_" + i + "_" + j);
 				}
 			}
 			

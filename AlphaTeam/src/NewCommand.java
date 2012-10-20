@@ -29,7 +29,7 @@ public class NewCommand implements Command {
 		GUI_BufferWindow.addWindow(aWindow); //Add new bufferwindow to static list
 		
 		//Insert initial HTML tags
-		InsertTagCommand insHTML = new InsertTagCommand("_HTML");
+		InsertTagCommand insHTML = new InsertTagCommand(new HTMLTag());
 		insHTML.execute();
 	}
 

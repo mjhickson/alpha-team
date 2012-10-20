@@ -18,9 +18,9 @@ public class HTMLTableRowTag implements HTMLConstruct {
 	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLTableRowTag(){
-		tagName = "b";
-		sTag = "<b>";
-		eTag = "</b>";
+		tagName = "tr";
+		sTag = "<tr>";
+		eTag = "</tr>";
 		indentNum = -1;
 		text = "";
 	}

@@ -23,6 +23,11 @@ class GUI_BufferWindow {
 	public void insertTag(HTMLConstruct tag) {
 		disWindow.insert(tag.getSTag(), disWindow.getCaretPosition());
 		disWindow.insert(tag.getETag(), disWindow.getCaretPosition());
+		disWindow.setCaretPosition(disWindow.getCaretPosition() - tag.getETag().length());
+	}
+	
+	public void shiftCaret(int shift) {
+		disWindow.setCaretPosition(disWindow.getCaretPosition() + shift);
 	}
 
 	public void setText(String text) {
@@ -37,14 +42,12 @@ class GUI_BufferWindow {
 		return scroller;
 	}
 	
-	public void update() {
-		//disWindow.updateUI();
-		//disWindow.revalidate();
-		//disWindow.repaint();
-	}
-	
 	public String getTitle() {
 		return title;
+	}
+	
+	public int getCursorPosition() {
+		return disWindow.getCaretPosition();
 	}
 	
 	public static void addWindow(GUI_BufferWindow win) {

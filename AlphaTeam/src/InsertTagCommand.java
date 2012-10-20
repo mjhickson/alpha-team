@@ -13,16 +13,10 @@ public class InsertTagCommand implements Command {
 	/**
 	 * 
 	 */
-	public InsertTagCommand(String tagStr) {
-		if(tagStr.contains("_b"))
-			tag = new HTMLBoldTag();
-		if(tagStr.contains("_i"))
-			tag = new HTMLItalicTag();
-		if(tagStr.contains("_HTML"))
-			tag = new HTMLTag();
-		
+	public InsertTagCommand(HTMLConstruct tag) {
+		this.tag = tag;
 	}
-
+		
 	/* (non-Javadoc)
 	 * @see Command#execute()
 	 */

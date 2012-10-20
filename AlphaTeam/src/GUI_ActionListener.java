@@ -60,9 +60,63 @@ public class GUI_ActionListener implements ActionListener {
 		}
 		
 		if(e.getActionCommand().contains("insert_")) {
-			InsertTagCommand insrtTag = new InsertTagCommand(e.getActionCommand());
-			insrtTag.execute();
-		}
-
-	}
-}
+			HTMLConstruct tag;
+				tag = new HTMLTag(); //Provide default tag
+			String tagStr = e.getActionCommand();
+			InsertTagCommand insrtTag;
+			
+			if(tagStr.contains("_b")) {
+				tag = new HTMLBoldTag();
+					insrtTag = new InsertTagCommand(tag);
+					insrtTag.execute();
+			}
+			
+			if(tagStr.contains("_i")) {
+				tag = new HTMLItalicTag();
+					insrtTag = new InsertTagCommand(tag);
+					insrtTag.execute();
+			}
+			
+			if(tagStr.contains("_HTML")) {
+				tag = new HTMLTag();
+					insrtTag = new InsertTagCommand(tag);
+					insrtTag.execute();
+			}
+			
+			//If a table has been inserted
+			if(tagStr.contains("_Table")) {
+				//Split the command to extract table dimensions
+				String tableParse[];
+				tableParse = tagStr.split("_");
+				//Insert table tag
+				tag = new HTMLTableTag();
+					insrtTag = new InsertTagCommand(tag);
+					insrtTag.execute();
+					
+				int index = GUI_Main.getSelectedTab(); //Get index
+				
+				//extracts the size of the table and inserts tr/td tags	
+				for(int i = 0; i < Integer.parseInt(tableParse[3]); i++) {
+					//Insert tr tag
+					tag = new HTMLTableRowTag();
+						insrtTag = new InsertTagCommand(tag);
+						insrtTag.execute();
+					//Insert necessary number of td tags
+					for(int j = 0; j < Integer.parseInt(tableParse[2]); j++) {
+						tag = new HTMLTableDataTag();
+							insrtTag = new InsertTagCommand(tag);
+							insrtTag.execute();
+						//Shift caret to avoid unwanted nesting of td tags
+						GUI_BufferWindow.getWindow(index).
+											shiftCaret(tag.getETag().length());
+					}
+					//Shift caret to end of </tr> to set up for next row
+					GUI_BufferWindow.getWindow(index).
+								shiftCaret((tag.getETag().length() *   
+										   	  (Integer.parseInt(tableParse[2]) - 1)));					
+				}//for				
+			}//if _table
+		}//if _insert
+		
+	}//actionperformed
+}//class
