@@ -17,7 +17,7 @@ public class HTMLImgTag extends HTMLConstruct {
 	public HTMLImgTag(){
 		tagName = "img";
 		sTag = "<img>";
-		eTag = "</img>";
+		eTag = "";
 		text = "";
 	}
 	
@@ -28,7 +28,7 @@ public class HTMLImgTag extends HTMLConstruct {
 	 */
 	public HTMLImgTag(String src){
 		tagName = "img";
-		eTag = "</img>";
+		eTag = "";
 		text = "";
 		setSrc(src); //Sets up the image source and start tag using the src parameter.
 	}

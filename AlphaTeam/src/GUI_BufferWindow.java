@@ -15,7 +15,8 @@ class GUI_BufferWindow {
 		
 		keyListen = new GUI_KeyListener();	
 		disWindow = new JTextArea();
-		disWindow.addKeyListener(keyListen);
+			disWindow.addKeyListener(keyListen);
+			disWindow.setWrapStyleWord(true);
 		scroller = new JScrollPane(disWindow);
 		title = name;
 	}
@@ -25,6 +26,11 @@ class GUI_BufferWindow {
 		disWindow.insert(tag.getETag(), disWindow.getCaretPosition());
 		disWindow.setCaretPosition(disWindow.getCaretPosition() - tag.getETag().length());
 		disWindow.insert(tag.getText(), disWindow.getCaretPosition());
+	}
+	
+	public void setWordWrap(boolean wrap) {
+		disWindow.setLineWrap(wrap);
+		//scroller.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	}
 	
 	public void shiftCaret(int shift) {

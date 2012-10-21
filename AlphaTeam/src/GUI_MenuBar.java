@@ -45,7 +45,7 @@ public class GUI_MenuBar extends JMenuBar{
 	private JMenu[] tableGrid;
 	private JMenuItem[][] tableGridSelect;
 	
-	private JRadioButtonMenuItem autoWrap, autoIndent;
+	private static JRadioButtonMenuItem autoWrap, autoIndent;
 	private GUI_ActionListener actionListener;
 	
 	public GUI_MenuBar() {
@@ -222,5 +222,9 @@ public class GUI_MenuBar extends JMenuBar{
 			
 		//help
 		helpMenu.add(aboutEditor);
+	}//Constructor
+	
+	public static boolean getWrapState() {
+		return autoWrap.isSelected();
 	}
 }

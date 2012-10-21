@@ -8,11 +8,12 @@
  */
 public class WrapCommand implements Command {
 
+	private boolean wrap;
 	/**
 	 * 
 	 */
-	public WrapCommand() {
-		// TODO Auto-generated constructor stub
+	public WrapCommand(boolean wrap) {
+		this.wrap = wrap;
 	}
 
 	/**
@@ -20,8 +21,8 @@ public class WrapCommand implements Command {
 	 */
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-
+		int index = GUI_Main.getSelectedTab();
+		GUI_BufferWindow.getWindow(index).setWordWrap(wrap);
 	}
 
 }

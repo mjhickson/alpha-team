@@ -1,14 +1,16 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import javax.swing.JFileChooser;
 
 /**
  * Author: Stephen Brewster Group 1
  * Date:   9/17/2012
  * Description:
  * 		Supplies the actionlistener class for the execution of commands
- *	issued by the HTML Editor
+ *	issued by the HTML Editor. Contains more logic than it probably should for the
+ *  carrying out of commands but it helps clean up the other classes and 
+ *  keeps the number of command classes down. Command objects not requiring special
+ *  constructor arguments are created once and persist.
  */
 public class GUI_ActionListener implements ActionListener {
 
@@ -59,9 +61,37 @@ public class GUI_ActionListener implements ActionListener {
 			pasteCommand.execute();
 		}
 		
+		if(e.getActionCommand().equals("Auto-Wrap")) {
+			WrapCommand wc = new WrapCommand(GUI_MenuBar.getWrapState());
+			wc.execute();
+		}
+			
+		if(e.getActionCommand().equals("fileBrowse")) {
+			GUI_ImgSrcParameters.choosePath();
+		}
+		
+		if(e.getActionCommand().equals("cancelImgSrc")) {
+			GUI_Main.setImgSrcInputVisible(false);
+		}
+		
+		//Acquires text from img src window to build and insert an img src tag
+		if(e.getActionCommand().equals("confirmImgSrc")) {
+			//Create tag
+			HTMLConstruct tag;
+				tag = new HTMLImgTag(GUI_Main.getImgSrcParameters());
+			//Create command
+			InsertTagCommand insrtTag = new InsertTagCommand(tag);
+			insrtTag.execute();
+				
+			GUI_Main.setImgSrcInputVisible(false);
+			
+		}
+		
+		//Acquires text from link parameter window to build and insert
+		//an <a href> tag
 		if(e.getActionCommand().equals("confirmLinkParameters")) {
-			String params[] = GUI_Main.getLinkParameters();
-			GUI_Main.setLinkInputVisible(false);
+			String params[] = GUI_Main.getLinkParameters(); //Acquire text
+			GUI_Main.setLinkInputVisible(false); //Hide input frame
 			
 			//Create tag
 			HTMLConstruct tag;
@@ -86,6 +116,11 @@ public class GUI_ActionListener implements ActionListener {
 			//Inserts A Href (link) tag
 			if(tagStr.contains("_ahref")) {
 				GUI_Main.setLinkInputVisible(true);
+			}
+			
+			//Inserts Img Src tag
+			if(tagStr.contains("_Img")) {
+				GUI_Main.setImgSrcInputVisible(true);
 			}
 			
 			//Inserts b (bold) tag

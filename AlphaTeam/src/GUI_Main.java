@@ -23,7 +23,7 @@ class GUI_Main extends JFrame {
 	private GUI_MenuBar menuBar;
 	private Formatter formatter;
 	private static JTabbedPane tabs;
-	private static JFrame aHrefFrame;
+	private static JFrame aHrefFrame, imgSrcFrame;
 
 	public GUI_Main() {
 		formatter = new Formatter();
@@ -56,6 +56,12 @@ class GUI_Main extends JFrame {
 		aHrefFrame.setVisible(false);
 		aHrefFrame.setBounds(500, 300, 250, 170);
 		aHrefFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
+		//Create img src frame for specifing an img to create tag for
+		imgSrcFrame = new GUI_ImgSrcParameters();
+		imgSrcFrame.setVisible(false);
+		imgSrcFrame.setBounds(500, 300, 450, 120);
+		imgSrcFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	}
 	
 	/**
@@ -114,6 +120,24 @@ class GUI_Main extends JFrame {
 		aHrefInfo[1] = GUI_AHrefParameters.getText(); //Retrieve Text
 			GUI_AHrefParameters.clearFields(); //Clear fields
 		return aHrefInfo;
+	}
+	
+	/**
+	 * Sets the visibility of the Img Src path finder window
+	 * @param vis Boolean visibility value for the window
+	 */
+	public static void setImgSrcInputVisible(boolean vis) {
+		imgSrcFrame.setVisible(vis);
+	}
+	
+	/**
+	 * retreives the text in the path name file of the img src window
+	 * @return path Pathname of the img tag to be inserted
+	 */
+	public static String getImgSrcParameters() {
+		String pathName = GUI_ImgSrcParameters.getPath();
+		GUI_ImgSrcParameters.clearFields();
+		return pathName;
 	}
 	
 	/**
