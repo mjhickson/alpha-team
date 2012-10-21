@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * Author: Stephen Brewster Group 1
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  */
 
 
-class Buffer {
+class Buffer extends Observable {
 	private File file;
 	private String plainText;
 	private String fileName;

@@ -9,7 +9,7 @@
 import java.util.ArrayList;
 
 
-public class HTMLDefinitionListTag {
+public class HTMLDefinitionListTag implements HTMLConstruct {
 
 	private String tagName;
 	private String sTag;
@@ -19,9 +19,9 @@ public class HTMLDefinitionListTag {
 	private ArrayList<HTMLConstruct> childConstructs = new ArrayList<HTMLConstruct>();
 	
 	public HTMLDefinitionListTag(){
-		tagName = "b";
-		sTag = "<b>";
-		eTag = "</b>";
+		tagName = "dl";
+		sTag = "<dl>";
+		eTag = "</dl>";
 		indentNum = -1;
 		text = "";
 	}
