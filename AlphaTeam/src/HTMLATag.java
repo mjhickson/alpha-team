@@ -4,6 +4,7 @@
 
 /**
  * @author Michael Yeaple
+ * @authro Stephen Brewster
  */
 
 public class HTMLATag extends HTMLConstruct {
@@ -22,14 +23,14 @@ public class HTMLATag extends HTMLConstruct {
 	}
 	
 	/**
-	 * Constructor to be used if a URL is passed in.
+	 * Constructor to be used for URL and link text.
 	 * Sets up the A tag with the specified URL.
 	 * @param url - The A tag's URL.
 	 */
-	public HTMLATag(String url){
+	public HTMLATag(String url, String linktext){
 		tagName = "a";
 		eTag = "</a>";
-		text = "";
+		text = linktext;
 		setURL(url); //Sets up the URL and start tag using the URL parameter.
 	}
 	
@@ -46,8 +47,7 @@ public class HTMLATag extends HTMLConstruct {
 	 * @param src - The URL to be set.
 	 */
 	public void setURL(String url){
-		sTag = "<img src=\"" + url + "\">";
+		sTag = "<a href=\"" + url + "\">";
 		this.url = url;
 	}
-	
 }

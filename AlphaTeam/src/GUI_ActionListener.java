@@ -1,10 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 
 /**
  * Author: Stephen Brewster Group 1
@@ -62,12 +59,34 @@ public class GUI_ActionListener implements ActionListener {
 			pasteCommand.execute();
 		}
 		
+		if(e.getActionCommand().equals("confirmLinkParameters")) {
+			String params[] = GUI_Main.getLinkParameters();
+			GUI_Main.setLinkInputVisible(false);
+			
+			//Create tag
+			HTMLConstruct tag;
+				tag = new HTMLATag(params[0], params[1]);
+			
+			//Create insert command
+			InsertTagCommand insrtTag = new InsertTagCommand(tag);
+			insrtTag.execute();
+		}
+		
+		if(e.getActionCommand().equals("cancelLinkParameters")) {
+			GUI_Main.setLinkInputVisible(false);
+		}
+		
 		//Inserts html tags into the current document
 		if(e.getActionCommand().contains("insert_")) {
 			HTMLConstruct tag;
 				tag = new HTMLTag(); //Provide default tag
 			String tagStr = e.getActionCommand();
 			InsertTagCommand insrtTag;
+			
+			//Inserts A Href (link) tag
+			if(tagStr.contains("_ahref")) {
+				GUI_Main.setLinkInputVisible(true);
+			}
 			
 			//Inserts b (bold) tag
 			if(tagStr.contains("_b")) {

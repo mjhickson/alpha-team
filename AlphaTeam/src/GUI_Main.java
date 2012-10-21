@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.*;
+
 import java.util.Observable;
 
 /**
@@ -22,7 +23,7 @@ class GUI_Main extends JFrame {
 	private GUI_MenuBar menuBar;
 	private Formatter formatter;
 	private static JTabbedPane tabs;
-
+	private static JFrame aHrefFrame;
 
 	public GUI_Main() {
 		formatter = new Formatter();
@@ -49,7 +50,12 @@ class GUI_Main extends JFrame {
 		centerPanel.setBackground(formatter.getBg());
 		centerPanel.add(tabs);
 			add(centerPanel, BorderLayout.CENTER);
-		
+			
+		//Create the link input frame and set parameters
+		aHrefFrame = new GUI_AHrefParameters();
+		aHrefFrame.setVisible(false);
+		aHrefFrame.setBounds(500, 300, 250, 170);
+		aHrefFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	}
 	
 	/**
@@ -88,6 +94,26 @@ class GUI_Main extends JFrame {
 	public static void addBuffer(GUI_BufferWindow win) {
 		tabs.add(win.getWindow(), win.getTitle());
 		tabs.setSelectedIndex(tabs.getTabCount() - 1);
+	}
+	
+	/**
+	 * Sets the visibility of the A Href link insertion input window
+	 * @param vis Boolean visibility value for the window
+	 */
+	public static void setLinkInputVisible(boolean vis) {
+		aHrefFrame.setVisible(vis);
+	}
+	
+	/**
+	 * Returns the text located in the A Href parameter window
+	 * @return aHrefInfo Array containing 2 strings used to insert a href tag
+	 */
+	public static String[] getLinkParameters() {
+		String aHrefInfo[] = new String[2];
+		aHrefInfo[0] = GUI_AHrefParameters.getURL(); //Retrieve URL
+		aHrefInfo[1] = GUI_AHrefParameters.getText(); //Retrieve Text
+			GUI_AHrefParameters.clearFields(); //Clear fields
+		return aHrefInfo;
 	}
 	
 	/**

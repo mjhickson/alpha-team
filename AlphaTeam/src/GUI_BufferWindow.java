@@ -24,6 +24,7 @@ class GUI_BufferWindow {
 		disWindow.insert(tag.getSTag(), disWindow.getCaretPosition());
 		disWindow.insert(tag.getETag(), disWindow.getCaretPosition());
 		disWindow.setCaretPosition(disWindow.getCaretPosition() - tag.getETag().length());
+		disWindow.insert(tag.getText(), disWindow.getCaretPosition());
 	}
 	
 	public void shiftCaret(int shift) {
