@@ -28,6 +28,7 @@ public class GUI_MenuBar extends JMenuBar{
 						cutText, 
 					  	copyText, 
 					  	pasteText, 
+					  	undo,
 					  	aboutEditor,
 					  	saveFile, 
 					  	saveAs, 
@@ -36,7 +37,9 @@ public class GUI_MenuBar extends JMenuBar{
 					  	dictionary,
 						bold, 
 						italic, 
-						header, 
+						header,
+						img,
+						ahref,
 						specify,
 						close;
 	private JMenu[] tableGrid;
@@ -143,6 +146,11 @@ public class GUI_MenuBar extends JMenuBar{
 			         KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 				autoIndent.setMnemonic(KeyEvent.VK_I);
 				autoIndent.addActionListener(actionListener);
+			undo = new JRadioButtonMenuItem("Undo");
+				undo.setAccelerator(
+			         KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+				undo.setMnemonic(KeyEvent.VK_Z);
+				undo.addActionListener(actionListener);
 				
 			//Insert items
 			bold = new JMenuItem("Bold");
@@ -163,7 +171,12 @@ public class GUI_MenuBar extends JMenuBar{
 			dictionary = new JMenuItem("Dictionary");
 				dictionary.addActionListener(actionListener);	
 				dictionary.setActionCommand("insert_list_dictionary");
-					
+			img = new JMenuItem("Image");
+				img.addActionListener(actionListener);
+				img.setActionCommand("insert_Img");
+			ahref = new JMenuItem("A Href");
+				ahref.addActionListener(actionListener);
+				ahref.setActionCommand("insert_ahref");
 		//help
 			aboutEditor = new JMenuItem("About");
 				aboutEditor.setAccelerator(
@@ -188,6 +201,8 @@ public class GUI_MenuBar extends JMenuBar{
 			editMenu.addSeparator();
 		editMenu.add(pasteText);
 			editMenu.addSeparator();
+		editMenu.add(undo);
+			editMenu.addSeparator();
 		editMenu.add(autoWrap);
 		editMenu.add(autoIndent);
 		
@@ -196,6 +211,8 @@ public class GUI_MenuBar extends JMenuBar{
 		insertMenu.add(textMenu);
 		insertMenu.add(tableMenu);
 		insertMenu.add(listMenu);
+		insertMenu.add(img);
+		insertMenu.add(ahref);
 			listMenu.add(bulleted);
 			listMenu.add(numbered);
 			listMenu.add(dictionary);
