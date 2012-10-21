@@ -42,8 +42,16 @@ class GUI_BufferWindow {
 		return scroller;
 	}
 	
+	public JTextArea getTextArea() {
+		return disWindow;
+	}
+	
 	public String getTitle() {
 		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	public int getCursorPosition() {

@@ -87,6 +87,7 @@ class GUI_Main extends JFrame {
 	 */
 	public static void addBuffer(GUI_BufferWindow win) {
 		tabs.add(win.getWindow(), win.getTitle());
+		tabs.setSelectedIndex(tabs.getTabCount() - 1);
 	}
 	
 	/**

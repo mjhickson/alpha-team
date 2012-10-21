@@ -20,8 +20,9 @@ public class PasteCommand implements Command {
 	 */
 	@Override
 	public void execute() {
-		Buffer b = Buffer.getBuffer(GUI_Main.getSelectedTab());
-		
+		GUI_BufferWindow aWindow = 
+				GUI_BufferWindow.getWindow(GUI_Main.getSelectedTab());
+		aWindow.getTextArea().paste();	
 	}
 
 }
