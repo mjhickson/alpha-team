@@ -58,7 +58,7 @@ class GUI_Main extends JFrame {
 		//Create img src frame for specifing an img to create tag for
 		imgSrcFrame = new GUI_ImgSrcParameters();
 		imgSrcFrame.setVisible(false);
-		imgSrcFrame.setBounds(500, 300, 450, 120);
+		imgSrcFrame.setBounds(500, 300, 450, 400);
 		imgSrcFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		//Create link view frame for displaying URL lists
