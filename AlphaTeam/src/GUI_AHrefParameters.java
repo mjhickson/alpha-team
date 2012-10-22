@@ -26,7 +26,8 @@ class GUI_AHrefParameters extends JFrame {
 		actionListener = new GUI_ActionListener();
 		
 		//Declare and initialize GUI components
-		url = new JTextField();
+		url = new JTextField("http:\\\\");
+			url.setCaretPosition(7);
 			url.setPreferredSize(new Dimension(150,25));
 		text = new JTextField();
 			text.setPreferredSize(new Dimension(150,25));

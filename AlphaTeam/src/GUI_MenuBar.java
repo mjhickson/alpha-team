@@ -146,7 +146,7 @@ public class GUI_MenuBar extends JMenuBar{
 			         KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 				autoIndent.setMnemonic(KeyEvent.VK_I);
 				autoIndent.addActionListener(actionListener);
-			undo = new JRadioButtonMenuItem("Undo");
+			undo = new JMenuItem("Undo");
 				undo.setAccelerator(
 			         KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 				undo.setMnemonic(KeyEvent.VK_Z);

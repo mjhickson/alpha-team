@@ -17,7 +17,7 @@ public class HTMLATag extends HTMLConstruct {
 	 */
 	public HTMLATag(){
 		tagName = "a";
-		sTag = "<a>";
+		sTag = "<a href = >";
 		eTag = "</a>";
 		text = "";
 	}

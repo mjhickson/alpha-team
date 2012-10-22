@@ -23,7 +23,7 @@ class GUI_Main extends JFrame {
 	private GUI_MenuBar menuBar;
 	private Formatter formatter;
 	private static JTabbedPane tabs;
-	private static JFrame aHrefFrame, imgSrcFrame;
+	private static JFrame aHrefFrame, imgSrcFrame, linkView;
 
 	public GUI_Main() {
 		formatter = new Formatter();
@@ -50,6 +50,7 @@ class GUI_Main extends JFrame {
 		centerPanel.setBackground(formatter.getBg());
 		centerPanel.add(tabs);
 			add(centerPanel, BorderLayout.CENTER);
+
 			
 		//Create the link input frame and set parameters
 		aHrefFrame = new GUI_AHrefParameters();
@@ -62,6 +63,12 @@ class GUI_Main extends JFrame {
 		imgSrcFrame.setVisible(false);
 		imgSrcFrame.setBounds(500, 300, 450, 120);
 		imgSrcFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		
+		//Create link view frame for displaying URL lists
+		linkView = new GUI_LinkView();
+		linkView.setVisible(false);
+		linkView.setBounds(850, 50, 200, 400);
+		linkView.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	}
 	
 	/**
@@ -147,7 +154,7 @@ class GUI_Main extends JFrame {
 	public static void main(String[] args) {
 		//Set look and feel
 	    try {
-         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+       //  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	    } 
 	    catch (Exception e) {
 	    	// handle exception
@@ -155,7 +162,8 @@ class GUI_Main extends JFrame {
 	
 		GUI_Main frame = new GUI_Main();
 		frame.setTitle("HTML Editor");
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setBounds(50, 50, 800, 600 );
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
