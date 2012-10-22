@@ -6,14 +6,18 @@
  */
 
 import java.awt.Dimension;
+import java.awt.LayoutManager;
+
 import javax.swing.JFileChooser;
 import java.awt.GridLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 class GUI_ImgSrcParameters extends JFrame {
@@ -23,6 +27,7 @@ class GUI_ImgSrcParameters extends JFrame {
 	private GUI_ActionListener actionListener;
 	private static JLabel imgPreview;
 	private static ImageIcon preview;
+	private static JScrollPane imgScroller;
 	
 	public GUI_ImgSrcParameters() {
 		actionListener = new GUI_ActionListener();
@@ -41,12 +46,14 @@ class GUI_ImgSrcParameters extends JFrame {
 		fileBrowse = new JButton("...");
 			fileBrowse.addActionListener(actionListener);
 			fileBrowse.setActionCommand("fileBrowse");
-		imgPreview = new JLabel("");
-		imgPreview.setIcon(preview);
-		
+
+		preview = new ImageIcon("DefPreview.jpg");
+		imgPreview = new JLabel(preview);
+		imgScroller = new JScrollPane(imgPreview);
 		
 		//Build Window
-		setLayout(new GridLayout(3,1));
+		JPanel fullPanel = new JPanel();
+		fullPanel.setLayout(new BoxLayout(fullPanel, BoxLayout.Y_AXIS));
 		
 		JPanel path_p = new JPanel(); //Holds url fields
 		path_p.add(path_l);
@@ -58,11 +65,12 @@ class GUI_ImgSrcParameters extends JFrame {
 		button_p.add(cancel);
 		
 		JPanel image_p = new JPanel();
-		image_p.add(imgPreview);
+		image_p.add(imgScroller);
 		
-		add(path_p);
-		add(button_p);
-		add(image_p);
+		fullPanel.add(path_p);
+		fullPanel.add(button_p);
+		fullPanel.add(image_p);
+		add(fullPanel);
 	}//Constructor
 	
 	public static String getPath() {
@@ -86,5 +94,6 @@ class GUI_ImgSrcParameters extends JFrame {
 		fChooser.showOpenDialog(null);
 		path.setText(fChooser.getSelectedFile().getPath());
 		preview = new ImageIcon(path.getText());
+		imgPreview.setIcon(preview);
 	}
 }
