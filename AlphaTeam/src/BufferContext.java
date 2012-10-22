@@ -29,7 +29,8 @@ class BufferContext extends Observable {
 	private boolean neverSaved, saved;
 	private HTMLConstruct head;
 	private BufferState buffState;
-	private static ArrayList<BufferContext> bufferList;	
+	private BufferMementoCaretaker caretaker;
+	private static ArrayList<BufferContext> bufferList;
 	
 	/**
 	 * Class default constructor sets global variables to default parameters
@@ -42,7 +43,7 @@ class BufferContext extends Observable {
 		saved = false;
 		
 		buffState = new BufferState_Well(this);
-		
+		caretaker = new BufferMementoCaretaker();
 		if(bufferList == null)
 				bufferList = new ArrayList<BufferContext>();
 	}
@@ -235,6 +236,10 @@ class BufferContext extends Observable {
 			return false;
 		}
 	}//Wellformcheck
+	
+	public void undo(){
+		
+	}
 	
 	public String getFileName() {
 		return fileName;
