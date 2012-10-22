@@ -21,7 +21,8 @@ public class UndoCommand implements Command {
 	@Override
 	public void execute() {
 		// TODO Auto-generated method stub
-
+		int i = GUI_Main.getSelectedTab();
+		BufferContext.getBuffer(i).undo();
 	}
 
 }
