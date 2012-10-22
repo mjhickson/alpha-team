@@ -1,3 +1,10 @@
+/**
+ * Picks up keys from a GUI_BufferWindow and inserts them into the 
+ * associated buffer
+ * 
+ * @author Stephen Brewster
+ */
+
 import java.awt.event.KeyListener;
 
 class GUI_KeyListener implements KeyListener {
@@ -17,11 +24,18 @@ class GUI_KeyListener implements KeyListener {
 		
 	}
 
+	/**
+	 * When a key is typed it is passed to the associated buffer
+	 */
 	@Override
 	public void keyTyped(java.awt.event.KeyEvent e) {
 		int index = GUI_Main.getSelectedTab();
+		
+		//Insert new key pressed into a temp string
 		StringBuffer temp = new StringBuffer(GUI_BufferWindow.getWindow(index).getText());
 		temp.insert(GUI_BufferWindow.getWindow(index).getCursorPosition(), e.getKeyChar());
-		Buffer.getBuffer(index).setText(temp.toString());
+		
+		//Send newly made string to the buffer
+		BufferContext.getBuffer(index).setText(temp.toString());
 	}
 }

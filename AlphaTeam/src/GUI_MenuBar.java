@@ -1,7 +1,3 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import javax.swing.*;
-
 /**
  * Author: Stephen Brewster Group 1
  * Date:   9/17/2012
@@ -9,6 +5,11 @@ import javax.swing.*;
  * 		Supplies the JMenuBar for the HTML Editor
  * @author Stephen Brewster
  */
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.*;
 
 public class GUI_MenuBar extends JMenuBar{
 	

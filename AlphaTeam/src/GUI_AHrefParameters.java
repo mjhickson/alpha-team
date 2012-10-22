@@ -60,7 +60,7 @@ class GUI_AHrefParameters extends JFrame {
 		add(text_p);
 		add(button_p);
 	}//Constructor
-	
+
 	public static String getURL() {
 		return url.getText();
 	}
@@ -69,8 +69,11 @@ class GUI_AHrefParameters extends JFrame {
 		return text.getText();
 	}
 	
+	/**
+	 * Clears the text fields
+	 */
 	public static void clearFields() {
 		text.setText("");
-		url.setText("");
+		url.setText("http:\\");
 	}
 }

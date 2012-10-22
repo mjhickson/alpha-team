@@ -14,13 +14,13 @@ public class CloseCommand implements Command {
 	}
 
 	/**
-	 * 
+	 * Executes save functions if necessary then performs close functions
 	 * @see Command#execute()
 	 */
 	@Override
 	public void execute() {
 		int index = GUI_Main.getSelectedTab(); //Retrieve index of current tab to be closed
-		Buffer b = Buffer.getBuffer(index);
+		BufferContext b = BufferContext.getBuffer(index);
 		
 		//If buffer is currently saved close the tab
 		if(b.getSaved()) {
@@ -33,11 +33,11 @@ public class CloseCommand implements Command {
 	}//execute
 	
 	/**
-	 * closes the tab in the GUI and removes the Buffer from the list
+	 * closes the tab in the GUI and removes the BufferContext from the list
 	 * @param index location of tab/buffer to be removed
 	 */
 	private void close(int index) {
-		Buffer.removeBuffer(index);
+		BufferContext.removeBuffer(index);
 		GUI_Main.removeTab(index);
 		GUI_BufferWindow.removeWindow(index);
 	}

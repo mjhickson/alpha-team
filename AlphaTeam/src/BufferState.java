@@ -1,5 +1,5 @@
 /**
- * Abstract class for the BufferState objects
+ * Interface class for the BufferState objects
  * @author Stephen Brewster
  *
  */
@@ -17,7 +17,7 @@ abstract class BufferState {
 	}
 	
 	/**
-	 * Inserts a tag into the Buffer, error message if HTML is ill-formed
+	 * Inserts a tag into the BufferContext, error message if HTML is ill-formed
 	 */
 	public void insertTag(HTMLConstruct html) {
 	}
