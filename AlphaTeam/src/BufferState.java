@@ -1,5 +1,5 @@
 /**
- * Abstract class for the BufferState objects
+ * Interface class for the BufferState objects
  * @author Stephen Brewster
  *
  */

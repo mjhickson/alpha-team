@@ -1,9 +1,3 @@
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.BorderFactory;
-import javax.swing.border.*;
-
 /**
  * Author: Stephen Brewster Group 1
  * Date:   9/17/2012
@@ -12,11 +6,20 @@ import javax.swing.border.*;
  * @author Stephen Brewster
  */
 
+
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.BorderFactory;
+import javax.swing.border.*;
+
 public class Formatter {
 	private Border border;
 	private Color bg;
 	private Dimension button;
 	
+	/**
+	 * Default constructor: sets up formatted components with their values
+	 */
 	public Formatter() {
 		border = BorderFactory.createBevelBorder(1);
 		bg = new Color(250,250,250);

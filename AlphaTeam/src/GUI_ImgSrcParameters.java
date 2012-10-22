@@ -58,10 +58,17 @@ class GUI_ImgSrcParameters extends JFrame {
 		return path.getText();
 	}
 	
+	/**
+	 * Clears the text field
+	 */
 	public static void clearFields() {
 		path.setText("");
 	}
 	
+	/**
+	 * Opens a JFileChooser for user selection of an image and sets
+	 * the textfield to the chosen file
+	 */
 	public static void choosePath() {
 		JFileChooser fChooser = new JFileChooser();
 		fChooser.setApproveButtonText("Save As");

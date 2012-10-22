@@ -18,7 +18,8 @@ class GUI_ButtonPanel extends JPanel{
 					insertBold,
 					insertItalic,
 					insertLink,
-					insertImg;
+					insertImg,
+					linkView;
 	
 	private JTextField tRow, tCol;
 	private Formatter formatter;
@@ -27,7 +28,8 @@ class GUI_ButtonPanel extends JPanel{
 	public GUI_ButtonPanel() {
 		formatter = new Formatter();
 		actionListener = new GUI_ActionListener();
-		setLayout(new GridLayout(5,1,10,10));
+		
+		setLayout(new GridLayout(6,1,10,10));
 		setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		setBackground(formatter.getBg());
 		setBorder(BorderFactory.createTitledBorder("Insert"));
@@ -58,6 +60,11 @@ class GUI_ButtonPanel extends JPanel{
 		insertLink.setActionCommand("insert_ahref");
 		insertLink.setPreferredSize(formatter.getButton());
 		insertLink.addActionListener(actionListener);
+
+		linkView = new JButton("Link View");
+		linkView.setActionCommand("viewLinks");
+		linkView.setPreferredSize(formatter.getButton());
+		linkView.addActionListener(actionListener);
 		
 		tRow = new JTextField();
 		tCol = new JTextField();
@@ -77,5 +84,6 @@ class GUI_ButtonPanel extends JPanel{
 		add(insertItalic);
 		add(insertImg);
 		add(insertLink);
+		add(linkView);
 	}
 }

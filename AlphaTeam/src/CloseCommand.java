@@ -14,7 +14,7 @@ public class CloseCommand implements Command {
 	}
 
 	/**
-	 * 
+	 * Executes save functions if necessary then performs close functions
 	 * @see Command#execute()
 	 */
 	@Override

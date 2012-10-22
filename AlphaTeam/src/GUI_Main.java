@@ -1,24 +1,21 @@
+/**
+ * Author: Stephen Brewster Group 1
+ * Date:   9/17/2012
+ * Description:
+ * 		Builds GUI interface for the HTML Editor. Holds the frames for 
+ * inputting HTML tag parameters and the link view window. 
+ * @author Stephen Brewster
+ */
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.*;
-
 import java.util.Observable;
 
-/**
- * Author: Stephen Brewster Group 1
- * Date:   9/17/2012
- * Description:
- * 		Builds GUI interface for the HTML Editor
- * @author Stephen Brewster
- */
-
 class GUI_Main extends JFrame {
-	
-	/**
-	 * 
-	 */
+
 	private GUI_ActionListener actionListener;
 	private GUI_MenuBar menuBar;
 	private Formatter formatter;
@@ -32,7 +29,7 @@ class GUI_Main extends JFrame {
 		menuBar = new GUI_MenuBar();
 		setJMenuBar(menuBar); //Set menuBar to the JFrame
 		
-		tabs = new JTabbedPane();
+		tabs = new JTabbedPane(); //Holds all bufferwindows opened
 
 		//Build panels
 		//Left Panel
@@ -145,6 +142,14 @@ class GUI_Main extends JFrame {
 		String pathName = GUI_ImgSrcParameters.getPath();
 		GUI_ImgSrcParameters.clearFields();
 		return pathName;
+	}
+	
+	/**
+	 * Sets the visibility of the link view window
+	 * @param vis Boolean value for the window visibility
+	 */
+	public static void setLinkViewVisible(boolean vis) {
+		linkView.setVisible(vis);
 	}
 	
 	/**

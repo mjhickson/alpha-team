@@ -38,7 +38,5 @@ class BufferState_Ill extends BufferState {
 	 * @param html HTMLConstruct to be inserted
 	 */
 	public void insertTag(HTMLConstruct html) {
-		JOptionPane.showMessageDialog(null, 
-				"Unable to insert tags - HTML is not well-formed.");
 	}
 }

@@ -1,3 +1,18 @@
+
+/**
+ * Author: Stephen Brewster Group 1
+ * Date:   9/21/2012
+ * Description: This class contains the individual properties of the buffer, primary
+ * functions include the encapsulation of file data including; name, path, contents, 
+ * save state, and is responsible for storing & passing i/o information to the GUI/user
+ * regarding the currently accessed HTML files. Uses state pattern to change behavior
+ * when HTML code is not "well-formed"
+ *
+ * State classes: BufferState_Ill, BufferState_Well
+ *
+ * @author Stephen Brewster
+ */
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -6,23 +21,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
-
-/**
- * Author: Stephen Brewster Group 1
- * Date:   9/21/2012
- * Description: This class contains the individual properties of the buffer, primary
- * functions include the encapsulation of file data including; name, path, contents, 
- * save state, and is responsible for storing & passing i/o information to the GUI/user
- * regarding the currently accessed HTML files.
- * @author Stephen Brewster
- */
-
+import javax.swing.JOptionPane;
 
 class Buffer extends Observable {
 	private File file;
 	private String plainText;
 	private String fileName;
-	private boolean neverSaved, saved, wellFormState;
+	private boolean neverSaved, saved;
 	private HTMLConstruct head;
 	private BufferState buffState;
 	private static ArrayList<Buffer> bufferList;	
@@ -36,7 +41,7 @@ class Buffer extends Observable {
 		fileName = "Untitled.html";
 		neverSaved = true;
 		saved = false;
-		wellFormState = true;
+		
 		buffState = new BufferState_Well(this);
 		
 		if(bufferList == null)
@@ -53,8 +58,6 @@ class Buffer extends Observable {
 		fileName = file.getPath();
 		neverSaved = false;
 		saved = true;
-		wellFormState = false;
-		buffState = new BufferState_Ill(this);
 		
 		readInFile();
 		
@@ -76,6 +79,7 @@ class Buffer extends Observable {
 			}
 			bufferIn.close();
 		}catch(IOException e) {}
+		wellFormCheck();
 	}
 	
 	/**
@@ -84,6 +88,8 @@ class Buffer extends Observable {
 	 * @return boolean Affirmation of successful save
 	 */
 	public boolean saveFile(boolean as) {
+		wellFormCheck();
+		
 		if(buffState.saveFile(as)) {
 			neverSaved = false;
 			saved = true;
@@ -106,8 +112,88 @@ class Buffer extends Observable {
 	 * @param html HTMLConstruct to be inserted
 	 */
 	public void insertTag(HTMLConstruct html) {
-		
+		buffState.insertTag(html);
 	}
+	
+	/**
+	 * Adds a buffer to the list of currently loaded buffers
+	 * @param b Buffer object to be added to the list
+	 */
+	public static void addBuffer(Buffer b) {
+		bufferList.add(b);
+	}
+	
+	/**
+	 * Removes the buffer at the index location 'i'
+	 * @param i Index location of the buffer to be removed
+	 */
+	public static void removeBuffer(int i) {
+		bufferList.remove(i);
+	}
+	
+	/**
+	 * Checks the buffer text to ensure that it is well-formed. A false return
+	 * value is returned if it fails and the buffer changes to illformed state
+	 */
+	public boolean wellFormCheck() {
+		boolean checker = false;
+		int startMarker, j;
+		String check1, check2;
+		ArrayList<String> stack = new ArrayList<String>();
+		
+			for(int i = 0; i < plainText.length(); i++) {
+				if(plainText.charAt(i) == '<') { //Tag found
+					checker = false;
+					startMarker = i;
+					j = i;
+					
+					//Find bounds of tag in text
+					while(plainText.charAt(j) != '>') {
+						j++;
+					}
+					j++;
+					
+					check1 = plainText.substring(startMarker, j); //Extract tag
+					
+		//Add the tag to the stack if it is an open tag and not an img src tag
+					if(!check1.contains("/")) 
+						stack.add(0, check1);
+		//Check for end tag, if found scan stack and remove matching open tag
+					else if(check1.contains("/")) { //End tag found
+						//extract </> decorators
+						check2 = check1.substring(2, check1.length() -2);
+						
+						//compare the tag to all open tags on the stack
+						//remove matching open tag when found
+						for(int x = 0; x < stack.size(); x++) {
+							//Handle special cases
+							if(stack.get(x).contains("img src"))
+								stack.remove(x);
+							if(stack.get(x).contains("a href"))
+								stack.set(x, "<a>");
+							//Check for matching opening tag, remove if found	
+							if(stack.get(x).substring(1, stack.get(x).length() -2).
+									equalsIgnoreCase(check2)) {
+								stack.remove(x);
+								checker = true;
+							}
+						}//for(x)
+						if(!checker) { //Handles extra closing tags
+							stack.add(0, check1);
+						}
+					}//else if
+				}//if(charAt)
+			}//for(i)
+
+		if(stack.size() == 0) {
+			buffState = new BufferState_Well(this);
+			return true;
+		}
+		else {
+			buffState = new BufferState_Ill(this);
+			return false;
+		}
+	}//Wellformcheck
 	
 	public String getFileName() {
 		return fileName;
@@ -146,21 +232,5 @@ class Buffer extends Observable {
 	
 	public void setText(String t) {
 		plainText = t;
-	}
-	
-	/**
-	 * Adds a buffer to the list of currently loaded buffers
-	 * @param b Buffer object to be added to the list
-	 */
-	public static void addBuffer(Buffer b) {
-		bufferList.add(b);
-	}
-	
-	/**
-	 * Removes the buffer at the index location 'i'
-	 * @param i Index location of the buffer to be removed
-	 */
-	public static void removeBuffer(int i) {
-		bufferList.remove(i);
 	}
 }

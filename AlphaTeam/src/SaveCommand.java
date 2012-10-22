@@ -11,13 +11,15 @@ public class SaveCommand implements Command {
 	private boolean saveAs;
 	
 	/**
-	 * 
+	 * Primary constructor accepts a boolean to determin save vs save as
+	 * @param as
 	 */
 	public SaveCommand(boolean as) {
 		saveAs = as;
 	}
 
 	/**
+	 * Saves the currently selected buffer
 	 * @see Command#execute()
 	 */
 	@Override

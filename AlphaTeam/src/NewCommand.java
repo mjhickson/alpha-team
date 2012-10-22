@@ -1,20 +1,18 @@
 /**
- * 
- */
-
-/**
+ * Creates a new Buffer and BufferWindow
  * @author mhickson
  * @author Stephen Brewster
  */
 public class NewCommand implements Command {
 	
 	/**
-	 * 
+	 * Default constructor
 	 */
 	public NewCommand() {
 	}
 
 	/**
+	 * Creates Buffer and BufferWindow, adds them to static lists
 	 * @see Command#execute()
 	 */
 	@Override

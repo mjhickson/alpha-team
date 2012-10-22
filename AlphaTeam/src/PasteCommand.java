@@ -1,8 +1,7 @@
 /**
+ * Pastes text from the clipboard to the current caret position in the
+ * currently selected buffer
  * 
- */
-
-/**
  * @author mhickson
  * @author Stephen Brewster
  */
@@ -16,6 +15,7 @@ public class PasteCommand implements Command {
 	}
 
 	/**
+	 * Pastes text
 	 * @see Command#execute()
 	 */
 	@Override

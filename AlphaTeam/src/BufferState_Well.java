@@ -65,6 +65,6 @@ class BufferState_Well extends BufferState {
 	 * @param html HTMLConstruc to be inserted
 	 */
 	public void insertTag(HTMLConstruct tag) {
-		//GUI_Main.insertTag(tag);
+		//parent.buildHTML();
 	}
 }

@@ -1,7 +1,3 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-
 /**
  * Author: Stephen Brewster Group 1
  * Date:   9/17/2012
@@ -11,7 +7,13 @@ import java.io.File;
  *  carrying out of commands but it helps clean up the other classes and 
  *  keeps the number of command classes down. Command objects not requiring special
  *  constructor arguments are created once and persist.
+ *  
+ *  @author Stephen Brewster
  */
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class GUI_ActionListener implements ActionListener {
 
 	private NewCommand newCommand = new NewCommand();
@@ -24,6 +26,20 @@ public class GUI_ActionListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getActionCommand().equals("viewLinks"))  {
+			GUI_Main.setLinkViewVisible(true);
+		}
+			
+		if(e.getActionCommand().equals("fileBrowse")) {
+			GUI_ImgSrcParameters.choosePath();
+		}
+		
+		if(e.getActionCommand().equals("cancelImgSrc")) {
+			GUI_Main.setImgSrcInputVisible(false);
+		}
+	
+	//File Menu Commands *****************************************************
 		if(e.getActionCommand().equals("New")) {
 			newCommand.execute(); //Opens a new html buffer/file
 		}
@@ -48,7 +64,8 @@ public class GUI_ActionListener implements ActionListener {
 			//Closes the current document, saves first if necessary/desired
 			closeCommand.execute();
 		}
-		
+	
+	//Edit Menu Commands *****************************************************
 		if(e.getActionCommand().equals("Copy")) {
 			copyCommand.execute();
 		}
@@ -65,15 +82,8 @@ public class GUI_ActionListener implements ActionListener {
 			WrapCommand wc = new WrapCommand(GUI_MenuBar.getWrapState());
 			wc.execute();
 		}
-			
-		if(e.getActionCommand().equals("fileBrowse")) {
-			GUI_ImgSrcParameters.choosePath();
-		}
-		
-		if(e.getActionCommand().equals("cancelImgSrc")) {
-			GUI_Main.setImgSrcInputVisible(false);
-		}
-		
+
+	//HTML Tag Insertion Commands *********************************************
 		//Acquires text from img src window to build and insert an img src tag
 		if(e.getActionCommand().equals("confirmImgSrc")) {
 			//Create tag
@@ -100,10 +110,8 @@ public class GUI_ActionListener implements ActionListener {
 			//Create insert command
 			InsertTagCommand insrtTag = new InsertTagCommand(tag);
 			insrtTag.execute();
-		}
-		
-		if(e.getActionCommand().equals("cancelLinkParameters")) {
-			GUI_Main.setLinkInputVisible(false);
+			
+			GUI_LinkView.addLink(params[0]);
 		}
 		
 		//Inserts html tags into the current document
