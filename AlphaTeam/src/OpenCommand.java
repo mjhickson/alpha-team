@@ -38,6 +38,9 @@ public class OpenCommand implements Command {
 		
 		//Add file text to view
 		aWindow.setText(b.getText());
+		
+		//Add any url links to link view
+		GUI_LinkView.setLinks(b.getURLList());
 	}
 
 }

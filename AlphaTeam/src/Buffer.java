@@ -132,58 +132,100 @@ class Buffer extends Observable {
 	}
 	
 	/**
+	 * Extracts all html tags from text and places them in a list
+	 * @return links ArrayList<String> containing all HTML tags
+	 */
+	public ArrayList<String> getAllTags() {
+		int startMarker, j;
+		ArrayList<String> tags = new ArrayList<String>();
+		
+		//Loop through entire text looking for html tags
+		for(int i = 0; i < plainText.length(); i++) {
+			if(plainText.charAt(i) == '<') { //Tag found
+				startMarker = i; //Index in plaintext where tag starts
+				j = i;
+				
+				//Find bounds of tag in text
+				while(plainText.charAt(j) != '>') {
+					j++;
+				}
+				j++; //End of tag index
+				
+				tags.add(plainText.substring(startMarker, j));
+			}
+		}
+		return tags;
+	}
+	
+	/**
+	 * Searches for all links and returns them in a list
+	 * @return urlList List of URLs
+	 */
+	public ArrayList<String> getURLList() {
+		ArrayList<String> tagList = getAllTags();
+		ArrayList<String> urlList = new ArrayList<String>();
+		int x = 0;
+		String temp;
+			
+		//Search tags for links and extract url
+		for(int i = 0; i < tagList.size(); i++) {
+			temp = "";
+			x = 9;
+			
+			if(tagList.get(i).contains("a href")) {
+				while(tagList.get(i).charAt(x) != '\"') {//Extract url
+					temp += tagList.get(i).charAt(x); 
+					x++;
+				}
+			urlList.add(temp);
+			}
+		}
+		
+		return urlList;
+	}
+	
+	/**
 	 * Checks the buffer text to ensure that it is well-formed. A false return
 	 * value is returned if it fails and the buffer changes to illformed state
 	 */
 	public boolean wellFormCheck() {
 		boolean checker = false;
-		int startMarker, j;
 		String check1, check2;
 		ArrayList<String> stack = new ArrayList<String>();
+		ArrayList<String> tags = getAllTags();
 		
-			for(int i = 0; i < plainText.length(); i++) {
-				if(plainText.charAt(i) == '<') { //Tag found
-					checker = false;
-					startMarker = i;
-					j = i;
-					
-					//Find bounds of tag in text
-					while(plainText.charAt(j) != '>') {
-						j++;
-					}
-					j++;
-					
-					check1 = plainText.substring(startMarker, j); //Extract tag
+		for(int i = 0; i < tags.size(); i++) {
+			check1 = tags.get(i); //Extract tag
 					
 		//Add the tag to the stack if it is an open tag and not an img src tag
-					if(!check1.contains("/")) 
-						stack.add(0, check1);
+			if(!check1.contains("/")) 
+				stack.add(0, check1);
 		//Check for end tag, if found scan stack and remove matching open tag
-					else if(check1.contains("/")) { //End tag found
-						//extract </> decorators
-						check2 = check1.substring(2, check1.length() -2);
+			else if(check1.contains("/")) { //End tag found
+				//extract </> decorators
+				check2 = check1.substring(2, check1.length() -2);
 						
-						//compare the tag to all open tags on the stack
-						//remove matching open tag when found
-						for(int x = 0; x < stack.size(); x++) {
-							//Handle special cases
-							if(stack.get(x).contains("img src"))
-								stack.remove(x);
-							if(stack.get(x).contains("a href"))
-								stack.set(x, "<a>");
-							//Check for matching opening tag, remove if found	
-							if(stack.get(x).substring(1, stack.get(x).length() -2).
-									equalsIgnoreCase(check2)) {
-								stack.remove(x);
-								checker = true;
-							}
-						}//for(x)
-						if(!checker) { //Handles extra closing tags
+				//compare the tag to all open tags on the stack
+				//remove matching open tag when found
+				for(int x = 0; x < stack.size(); x++) {
+					//Handle special cases
+					if(stack.get(x).contains("img src"))
+						stack.remove(x);
+					if(stack.get(x).contains("a href"))
+						stack.set(x, "<a>");
+					//Check for matching opening tag, remove if found	
+					if(stack.get(x).substring(1, stack.get(x).length() -2).
+											      equalsIgnoreCase(check2)) {
+						stack.remove(x);
+						x = stack.size();
+						checker = true;
+					}
+					if(!checker) //Handles extra closing tags
 							stack.add(0, check1);
-						}
-					}//else if
-				}//if(charAt)
-			}//for(i)
+			
+				}//for(x)
+			}//else if(charAt)
+		}//for(i)
 
 		if(stack.size() == 0) {
 			buffState = new BufferState_Well(this);
