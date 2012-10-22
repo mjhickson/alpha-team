@@ -1,4 +1,3 @@
-
 /**
  * Author: Stephen Brewster Group 1
  * Date:   9/21/2012
@@ -23,19 +22,19 @@ import java.util.ArrayList;
 import java.util.Observable;
 import javax.swing.JOptionPane;
 
-class Buffer extends Observable {
+class BufferContext extends Observable {
 	private File file;
 	private String plainText;
 	private String fileName;
 	private boolean neverSaved, saved;
 	private HTMLConstruct head;
 	private BufferState buffState;
-	private static ArrayList<Buffer> bufferList;	
+	private static ArrayList<BufferContext> bufferList;	
 	
 	/**
 	 * Class default constructor sets global variables to default parameters
 	 */
-	public Buffer() {
+	public BufferContext() {
 		plainText = "";
 		head = new HTMLTag();
 		fileName = "Untitled.html";
@@ -45,14 +44,14 @@ class Buffer extends Observable {
 		buffState = new BufferState_Well(this);
 		
 		if(bufferList == null)
-				bufferList = new ArrayList<Buffer>();
+				bufferList = new ArrayList<BufferContext>();
 	}
 	
 	/**
 	 * Class constructor specifying a file to be used for loading the global variables
 	 * @param f File object to have its content extracted and loaded into a buffer
 	 */
-	public Buffer(File f) {
+	public BufferContext(File f) {
 		plainText = "";
 		file = f;
 		fileName = file.getPath();
@@ -62,7 +61,7 @@ class Buffer extends Observable {
 		readInFile();
 		
 		if(bufferList == null)
-			bufferList = new ArrayList<Buffer>();
+			bufferList = new ArrayList<BufferContext>();
 	}
 	
 	/**
@@ -101,9 +100,9 @@ class Buffer extends Observable {
 	/**
 	 * Returns the buffer at index 'i'
 	 * @param i Index of the buffer to be returned
-	 * @return Buffer
+	 * @return BufferContext
 	 */
-	public static Buffer getBuffer(int i) {
+	public static BufferContext getBuffer(int i) {
 		return bufferList.get(i);
 	}
 	
@@ -117,9 +116,9 @@ class Buffer extends Observable {
 	
 	/**
 	 * Adds a buffer to the list of currently loaded buffers
-	 * @param b Buffer object to be added to the list
+	 * @param b BufferContext object to be added to the list
 	 */
-	public static void addBuffer(Buffer b) {
+	public static void addBuffer(BufferContext b) {
 		bufferList.add(b);
 	}
 	

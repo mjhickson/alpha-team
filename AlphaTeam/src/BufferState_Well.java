@@ -1,5 +1,5 @@
 /**
- * Provides the well-formed state functions for the Buffer
+ * Provides the well-formed state functions for the BufferContext
  * @author Stephen Brewster
  */
 
@@ -13,13 +13,13 @@ import javax.swing.JTextArea;
 
 class BufferState_Well extends BufferState {
 	
-	private Buffer parent;
+	private BufferContext parent;
 	
 	/**
 	 * Constructor
-	 * @param parent Buffer object
+	 * @param parent BufferContext object
 	 */
-	public BufferState_Well(Buffer parent) {
+	public BufferState_Well(BufferContext parent) {
 		this.parent = parent;
 	}
 	

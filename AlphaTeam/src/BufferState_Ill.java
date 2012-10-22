@@ -1,18 +1,18 @@
 /**
- * Controls state specific functions for the Buffer class when it is in the ill-formed state
+ * Controls state specific functions for the BufferContext class when it is in the ill-formed state
  * @author Stephen Brewster
  */
 import javax.swing.JOptionPane;
 
 class BufferState_Ill extends BufferState {
 	
-	private Buffer parent;
+	private BufferContext parent;
 	
 	/**
 	 * Constructor, recieves buffer object as parent
-	 * @param parent Buffer object for the state object
+	 * @param parent BufferContext object for the state object
 	 */
-	public BufferState_Ill(Buffer parent) {
+	public BufferState_Ill(BufferContext parent) {
 		this.parent = parent;
 	}
 	

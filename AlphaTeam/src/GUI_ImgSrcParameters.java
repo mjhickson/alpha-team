@@ -8,6 +8,8 @@
 import java.awt.Dimension;
 import javax.swing.JFileChooser;
 import java.awt.GridLayout;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,7 +20,9 @@ class GUI_ImgSrcParameters extends JFrame {
 	private static JTextField path;
 	private JLabel path_l;
 	private JButton confirmImg, cancel, fileBrowse;
-	GUI_ActionListener actionListener;
+	private GUI_ActionListener actionListener;
+	private static JLabel imgPreview;
+	private static ImageIcon preview;
 	
 	public GUI_ImgSrcParameters() {
 		actionListener = new GUI_ActionListener();
@@ -37,6 +41,9 @@ class GUI_ImgSrcParameters extends JFrame {
 		fileBrowse = new JButton("...");
 			fileBrowse.addActionListener(actionListener);
 			fileBrowse.setActionCommand("fileBrowse");
+		imgPreview = new JLabel("");
+		imgPreview.setIcon(preview);
+		
 		
 		//Build Window
 		setLayout(new GridLayout(3,1));
@@ -50,8 +57,12 @@ class GUI_ImgSrcParameters extends JFrame {
 		button_p.add(confirmImg);
 		button_p.add(cancel);
 		
+		JPanel image_p = new JPanel();
+		image_p.add(imgPreview);
+		
 		add(path_p);
 		add(button_p);
+		add(image_p);
 	}//Constructor
 	
 	public static String getPath() {
@@ -71,8 +82,9 @@ class GUI_ImgSrcParameters extends JFrame {
 	 */
 	public static void choosePath() {
 		JFileChooser fChooser = new JFileChooser();
-		fChooser.setApproveButtonText("Save As");
+		fChooser.setApproveButtonText("Open");
 		fChooser.showOpenDialog(null);
 		path.setText(fChooser.getSelectedFile().getPath());
+		preview = new ImageIcon(path.getText());
 	}
 }

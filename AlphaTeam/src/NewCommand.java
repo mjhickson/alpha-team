@@ -1,5 +1,5 @@
 /**
- * Creates a new Buffer and BufferWindow
+ * Creates a new BufferContext and BufferWindow
  * @author mhickson
  * @author Stephen Brewster
  */
@@ -12,17 +12,17 @@ public class NewCommand implements Command {
 	}
 
 	/**
-	 * Creates Buffer and BufferWindow, adds them to static lists
+	 * Creates BufferContext and BufferWindow, adds them to static lists
 	 * @see Command#execute()
 	 */
 	@Override
 	public void execute() {
 		//Create buffer and associated view/controller
-		Buffer b = new Buffer();
+		BufferContext b = new BufferContext();
 		GUI_BufferWindow aWindow  = new GUI_BufferWindow(b.getFileName()); 
 		
 		//Add new elements to their lists
-		Buffer.addBuffer(b); //Add new buffer to static list
+		BufferContext.addBuffer(b); //Add new buffer to static list
 		GUI_Main.addBuffer(aWindow); //Add bufferwindow to GUI
 		GUI_BufferWindow.addWindow(aWindow); //Add new bufferwindow to static list
 		

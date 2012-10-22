@@ -7,12 +7,12 @@
  *
  */
 public class BufferMemento {
-	private Buffer memento;
-	public BufferMemento(Buffer buffer){
-		memento = buffer;
+	private BufferContext memento;
+	public BufferMemento(BufferContext bufferContext){
+		memento = bufferContext;
 	}
 	
-	public Buffer getState(){
+	public BufferContext getState(){
 		return memento;
 	}
 }

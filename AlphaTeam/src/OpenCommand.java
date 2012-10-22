@@ -28,13 +28,13 @@ public class OpenCommand implements Command {
         fChooser.showOpenDialog(null);
        
         //Create buffer and view
-        Buffer b = new Buffer(fChooser.getSelectedFile());
+        BufferContext b = new BufferContext(fChooser.getSelectedFile());
 		GUI_BufferWindow aWindow  = new GUI_BufferWindow(b.getFileName()); 
        
 		//Add elements to lists
 		GUI_Main.addBuffer(aWindow); //Add bufferwindow to GUI
 		GUI_BufferWindow.addWindow(aWindow); //Add bufferwindow to static list
-		Buffer.addBuffer(b);
+		BufferContext.addBuffer(b);
 		
 		//Add file text to view
 		aWindow.setText(b.getText());

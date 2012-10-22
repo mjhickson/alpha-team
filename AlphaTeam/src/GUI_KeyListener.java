@@ -36,6 +36,6 @@ class GUI_KeyListener implements KeyListener {
 		temp.insert(GUI_BufferWindow.getWindow(index).getCursorPosition(), e.getKeyChar());
 		
 		//Send newly made string to the buffer
-		Buffer.getBuffer(index).setText(temp.toString());
+		BufferContext.getBuffer(index).setText(temp.toString());
 	}
 }
