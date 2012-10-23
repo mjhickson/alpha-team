@@ -61,6 +61,14 @@ class GUI_BufferWindow {
 		disWindow.setCaretPosition(disWindow.getCaretPosition() + shift);
 	}
 
+	/**
+	 * Places the caret at a specified position
+	 * @param pos
+	 */
+	public void setCaretPos(int pos) {
+		disWindow.setCaretPosition(pos);
+	}
+	
 	public void setText(String text) {
 		disWindow.setText(text);
 	}

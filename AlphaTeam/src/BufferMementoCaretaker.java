@@ -28,7 +28,7 @@ public class BufferMementoCaretaker {
 	 */
 	public void addMemento(BufferMemento bufferState){
 		mementoStack.add(bufferState);
-		if(mementoStack.size() > 2){
+		if(mementoStack.size() > 10) {
 			mementoStack.remove(0);
 		}
 	}

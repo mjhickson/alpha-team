@@ -18,9 +18,10 @@ public class CutCommand implements Command {
 	 */
 	@Override
 	public void execute() {
-		GUI_BufferWindow aWindow = 
-				GUI_BufferWindow.getWindow(GUI_Main.getSelectedTab());
-		aWindow.getTextArea().cut();
+		int index = GUI_Main.getSelectedTab();
+		BufferContext.getBuffer(index).
+			saveState(GUI_BufferWindow.getWindow(index).getCursorPosition());
+		GUI_BufferWindow.getWindow(index).getTextArea().cut();
 	}
 
 }

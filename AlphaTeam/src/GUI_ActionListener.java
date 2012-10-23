@@ -23,6 +23,7 @@ public class GUI_ActionListener implements ActionListener {
 	private CutCommand cutCommand = new CutCommand();
 	private CopyCommand copyCommand = new CopyCommand();
 	private PasteCommand pasteCommand = new PasteCommand();
+	private UndoCommand undoCommand = new UndoCommand();
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -37,6 +38,15 @@ public class GUI_ActionListener implements ActionListener {
 		
 		if(e.getActionCommand().equals("cancelImgSrc")) {
 			GUI_Main.setImgSrcInputVisible(false);
+		}
+		
+		if(e.getActionCommand().equals("Refresh")) {
+			int index = GUI_Main.getSelectedTab();
+			GUI_LinkView.setLinks(BufferContext.getBuffer(index).getURLList());
+		}
+		
+		if(e.getActionCommand().equals("Sort")) {
+			GUI_LinkView.sortLinks();
 		}
 	
 	//File Menu Commands *****************************************************
@@ -83,6 +93,10 @@ public class GUI_ActionListener implements ActionListener {
 			wc.execute();
 		}
 
+		if(e.getActionCommand().equals("Undo")) {
+			undoCommand.execute();
+		}
+		
 	//HTML Tag Insertion Commands *********************************************
 		//Acquires text from img src window to build and insert an img src tag
 		if(e.getActionCommand().equals("confirmImgSrc")) {

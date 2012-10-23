@@ -58,6 +58,7 @@ class BufferContext extends Observable {
 		fileName = file.getPath();
 		neverSaved = false;
 		saved = true;
+		caretaker = new BufferMementoCaretaker();
 		
 		readInFile();
 		
@@ -96,6 +97,22 @@ class BufferContext extends Observable {
 			return true;
 		} else
 			return false;
+	}
+	
+	/**
+	 * Saves the state of the BufferContext
+	 */
+	public void saveState(int cursorPos) {
+		caretaker.addMemento(new BufferMemento(plainText, cursorPos));
+	}
+	
+	/**
+	 * Recovers the previous state of the BufferContext
+	 */
+	public int undo() {
+		BufferMemento mem = caretaker.getLastState();
+		plainText = mem.getTheText();
+		return mem.getCursorPos();
 	}
 	
 	/**
@@ -236,11 +253,7 @@ class BufferContext extends Observable {
 			return false;
 		}
 	}//Wellformcheck
-	
-	public void undo(){
-		
-	}
-	
+
 	public String getFileName() {
 		return fileName;
 	}

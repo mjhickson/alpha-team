@@ -31,6 +31,10 @@ class GUI_KeyListener implements KeyListener {
 	public void keyTyped(java.awt.event.KeyEvent e) {
 		int index = GUI_Main.getSelectedTab();
 		
+		//Save state
+		BufferContext.getBuffer(index).saveState(
+				GUI_BufferWindow.getWindow(index).getCursorPosition());
+		
 		//Insert new key pressed into a temp string
 		StringBuffer temp = new StringBuffer(GUI_BufferWindow.getWindow(index).getText());
 		temp.insert(GUI_BufferWindow.getWindow(index).getCursorPosition(), e.getKeyChar());

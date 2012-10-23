@@ -28,6 +28,10 @@ public class InsertTagCommand implements Command {
 		int i = GUI_Main.getSelectedTab();
 		
 		if(BufferContext.getBuffer(i).wellFormCheck()) {
+			//Save state
+			BufferContext.getBuffer(i).saveState(
+					GUI_BufferWindow.getWindow(i).getCursorPosition());
+			//Insert tag
 			GUI_BufferWindow.getWindow(i).insertTag(tag);
 			BufferContext.getBuffer(i).setText(GUI_BufferWindow.getWindow(i).getText());
 		}

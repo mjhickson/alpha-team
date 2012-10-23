@@ -11,18 +11,19 @@
  */
 public class BufferMemento {
 	//A copy of the Buffer in a specific state
-	private BufferContext memento;
+	private String theText;
+	private int cursorPos;
 	
-	public BufferMemento(BufferContext buffer){
-		memento = buffer;
+	public BufferMemento(String text, int cursorPos){
+		theText = text;
+		this.cursorPos = cursorPos;
 	}
-	
-	/**
-	 * gets the state that memento represents.
-	 * 
-	 * @return a Buffer class in a specific state
-	 */
-	public BufferContext getState(){
-		return memento;
+
+	public String getTheText() {
+		return theText;
+	}
+
+	public int getCursorPos() {
+		return cursorPos;
 	}
 }
