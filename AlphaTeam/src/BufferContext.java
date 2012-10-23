@@ -113,7 +113,12 @@ class BufferContext extends Observable {
 	public int undo() {
 		BufferMemento mem = caretaker.getLastState();
 		plainText = mem.getTheText();
-		return mem.getCursorPos();
+		if (mem == null){
+			return 0;
+		}
+		else{
+			return mem.getCursorPos();
+		}
 	}
 	
 	/**
@@ -259,42 +264,73 @@ class BufferContext extends Observable {
 			return false;
 		}
 	}//Wellformcheck
-
+	/**
+	 * Give you the file name that the buffer is editing
+	 * @return filename, Stirng of the file name
+	 */
 	public String getFileName() {
 		return fileName;
 	}
-	
+	/**
+	 * returns the file object that the Buffer is editing
+	 * @return file object that the buffer is editing
+	 */
 	public File getFile() {
 		return file;
 	}
-	
+	/**
+	 * gives you a HTMLHeadTag
+	 * @return HTMLHeadTag
+	 */
 	public HTMLConstruct getHead() {
 		return head;
 	}
-
+	/**
+	 * sets the filename that the Buffer is editing
+	 * @param fileName, String of the file the buffer is editing
+	 */
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	
+	/**
+	 * returns whether the buffer has never been saved
+	 * @return neverSaved, a boolean to tell whether a buffer has never been saved
+	 */
 	public boolean getNeverSaved() {
 		return neverSaved;
 	}
-	
+	/**
+	 * sets whether a buffer has never been saved
+	 * @param s, true if buffer has never been saved
+	 */
 	public void setNeverSaved(boolean s) {
 		neverSaved = s;
 	}
+	/**
+	 * sets whether a buffer has been saved
+	 * @param s, true if the buffer has beeen saved
+	 */
 	public void setSaved(boolean s) {
 		saved = s;
 	}
-	
+	/**
+	 * gets whether a buffer has been saved
+	 * @return saved, true if has been saved, false if has not been saved
+	 */
 	public boolean getSaved() {
 		return saved;
 	}
-
+	/**
+	 * gets the HTML text stored in the buffer
+	 * @return plainText, String of the text in the buffer
+	 */
 	public String getText() {
 		return plainText;
 	}
-	
+	/**
+	 * sets the HMTL text in the buffer
+	 * @param t, the HTML text that is to be set in the buffer
+	 */
 	public void setText(String t) {
 		plainText = t;
 	}
