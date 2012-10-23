@@ -90,6 +90,7 @@ class BufferContext extends Observable {
 	 */
 	public boolean saveFile(boolean as) {
 		wellFormCheck();
+		//getAllTags();
 		
 		if(buffState.saveFile(as)) {
 			neverSaved = false;
@@ -156,8 +157,10 @@ class BufferContext extends Observable {
 		int startMarker, j;
 		ArrayList<String> tags = new ArrayList<String>();
 		
+		
 		//Loop through entire text looking for html tags
 		for(int i = 0; i < plainText.length(); i++) {
+			
 			if(plainText.charAt(i) == '<') { //Tag found
 				startMarker = i; //Index in plaintext where tag starts
 				j = i;
@@ -167,8 +170,8 @@ class BufferContext extends Observable {
 					j++;
 				}
 				j++; //End of tag index
-				
 				tags.add(plainText.substring(startMarker, j));
+				i = j - 1;
 			}
 		}
 		return tags;
@@ -197,54 +200,57 @@ class BufferContext extends Observable {
 			urlList.add(temp);
 			}
 		}
-		
 		return urlList;
 	}
 	
 	/**
 	 * Checks the buffer text to ensure that it is well-formed. A false return
-	 * value is returned if it fails and the buffer changes to illformed state
+	 * value is returned if it fails and the buffer changes to ill-formed state
+	 * @return 
 	 */
 	public boolean wellFormCheck() {
-		boolean checker = false;
-		String check1, check2;
+		boolean checker = true;
+		String check1, check2 = "";
+		int bo = 0, bc = 0;
 		ArrayList<String> stack = new ArrayList<String>();
 		ArrayList<String> tags = getAllTags();
 		
-		for(int i = 0; i < tags.size(); i++) {
-			check1 = tags.get(i); //Extract tag
-					
-		//Add the tag to the stack if it is an open tag and not an img src tag
-			if(!check1.contains("/")) 
-				stack.add(0, check1);
-		//Check for end tag, if found scan stack and remove matching open tag
-			else if(check1.contains("/")) { //End tag found
-				//extract </> decorators
-				check2 = check1.substring(2, check1.length() -2);
-						
-				//compare the tag to all open tags on the stack
-				//remove matching open tag when found
-				for(int x = 0; x < stack.size(); x++) {
-					//Handle special cases
-					if(stack.get(x).contains("img src"))
-						stack.remove(x);
-					if(stack.get(x).contains("a href"))
-						stack.set(x, "<a>");
-					//Check for matching opening tag, remove if found	
-					if(stack.get(x).substring(1, stack.get(x).length() -2).
-											      equalsIgnoreCase(check2)) {
-						stack.remove(x);
-						x = stack.size();
-						checker = true;
-					}
-					if(!checker) //Handles extra closing tags
-							stack.add(0, check1);
-			
-				}//for(x)
-			}//else if(charAt)
-		}//for(i)
+	//Check for proper number of brackets
+		for(int i = 0; i < plainText.length(); i++) {
+			if(plainText.charAt(i) == '<')
+				bo++;
+			if(plainText.charAt(i) == '>')
+				bc++;
+		}//for(j)
 
-		if(stack.size() == 0) {
+		if(bc != bo)
+			checker = false; //Well form failed
+
+	//Check open/close tag association
+		if(checker) {
+			for(int i = 0; i < tags.size(); i ++) {
+				check1 = tags.get(i);
+				
+				if(!check1.contains("/")) { //Opening tag found
+					stack.add(check1);
+				}
+				else {
+					for(int j = 0; j < stack.size(); j++) { //Find open tag
+						if(stack.get(j).contains(
+								check1.substring(2, check1.length() - 1))) {
+							stack.remove(j); //Remove open tag
+							j = stack.size();
+						}
+					}//for(j)
+				}//else
+			}//for(i)
+		}//if(checker)
+		
+		if(stack.size() > 0)
+			checker = false;
+	
+	//Finalize results
+		if(checker) {
 			buffState = new BufferState_Well(this);
 			return true;
 		}
