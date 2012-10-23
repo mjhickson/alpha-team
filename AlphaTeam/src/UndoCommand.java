@@ -19,6 +19,10 @@ public class UndoCommand implements Command {
 	 * @see Command#execute()
 	 */
 	@Override
+	/**
+	 * Undoes the last action performed.
+	 * So tells the Buffer to revert back to a previous saved memento.
+	 */
 	public void execute() {
 		int index = GUI_Main.getSelectedTab();
 		BufferContext b = BufferContext.getBuffer(index);
