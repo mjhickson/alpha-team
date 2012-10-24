@@ -264,6 +264,7 @@ class BufferContext extends Observable {
 			return false;
 		}
 	}//Wellformcheck
+	
 	/**
 	 * Give you the file name that the buffer is editing
 	 * @return filename, Stirng of the file name
@@ -271,6 +272,7 @@ class BufferContext extends Observable {
 	public String getFileName() {
 		return fileName;
 	}
+	
 	/**
 	 * returns the file object that the Buffer is editing
 	 * @return file object that the buffer is editing
@@ -278,6 +280,7 @@ class BufferContext extends Observable {
 	public File getFile() {
 		return file;
 	}
+	
 	/**
 	 * gives you a HTMLHeadTag
 	 * @return HTMLHeadTag
@@ -285,6 +288,7 @@ class BufferContext extends Observable {
 	public HTMLConstruct getHead() {
 		return head;
 	}
+	
 	/**
 	 * sets the filename that the Buffer is editing
 	 * @param fileName, String of the file the buffer is editing
@@ -292,6 +296,7 @@ class BufferContext extends Observable {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+	
 	/**
 	 * returns whether the buffer has never been saved
 	 * @return neverSaved, a boolean to tell whether a buffer has never been saved
@@ -299,6 +304,7 @@ class BufferContext extends Observable {
 	public boolean getNeverSaved() {
 		return neverSaved;
 	}
+	
 	/**
 	 * sets whether a buffer has never been saved
 	 * @param s, true if buffer has never been saved
@@ -306,6 +312,7 @@ class BufferContext extends Observable {
 	public void setNeverSaved(boolean s) {
 		neverSaved = s;
 	}
+	
 	/**
 	 * sets whether a buffer has been saved
 	 * @param s, true if the buffer has beeen saved
@@ -313,6 +320,7 @@ class BufferContext extends Observable {
 	public void setSaved(boolean s) {
 		saved = s;
 	}
+	
 	/**
 	 * gets whether a buffer has been saved
 	 * @return saved, true if has been saved, false if has not been saved
@@ -320,6 +328,7 @@ class BufferContext extends Observable {
 	public boolean getSaved() {
 		return saved;
 	}
+	
 	/**
 	 * gets the HTML text stored in the buffer
 	 * @return plainText, String of the text in the buffer
@@ -327,6 +336,7 @@ class BufferContext extends Observable {
 	public String getText() {
 		return plainText;
 	}
+	
 	/**
 	 * sets the HMTL text in the buffer
 	 * @param t, the HTML text that is to be set in the buffer
