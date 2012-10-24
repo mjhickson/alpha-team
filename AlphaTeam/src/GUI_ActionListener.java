@@ -27,6 +27,9 @@ public class GUI_ActionListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(GUI_Main.getSelectedTab() == -1){
+			return;
+		}
 		
 		if(e.getActionCommand().equals("viewLinks"))  {
 			GUI_Main.setLinkViewVisible(true);
