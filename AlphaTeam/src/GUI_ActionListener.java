@@ -27,28 +27,40 @@ public class GUI_ActionListener implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(GUI_Main.getSelectedTab() == -1){
-			return;
-		}
 		
 		if(e.getActionCommand().equals("viewLinks"))  {
+			if(GUI_Main.getSelectedTab() == -1){
+				return;
+			}
 			GUI_Main.setLinkViewVisible(true);
 		}
 			
 		if(e.getActionCommand().equals("fileBrowse")) {
+			if(GUI_Main.getSelectedTab() == -1){
+				return;
+			}
 			GUI_ImgSrcParameters.choosePath();
 		}
 		
 		if(e.getActionCommand().equals("cancelImgSrc")) {
+			if(GUI_Main.getSelectedTab() == -1){
+				return;
+			}
 			GUI_Main.setImgSrcInputVisible(false);
 		}
 		
 		if(e.getActionCommand().equals("Refresh")) {
+			if(GUI_Main.getSelectedTab() == -1){
+				return;
+			}
 			int index = GUI_Main.getSelectedTab();
 			GUI_LinkView.setLinks(BufferContext.getBuffer(index).getURLList());
 		}
 		
 		if(e.getActionCommand().equals("Sort")) {
+			if(GUI_Main.getSelectedTab() == -1){
+				return;
+			}
 			GUI_LinkView.sortLinks();
 		}
 	
@@ -59,6 +71,10 @@ public class GUI_ActionListener implements ActionListener {
 			
 		if(e.getActionCommand().equals("Open")) {
 			openCommand.execute(); //Opens an existing html buffer/file
+		}
+		
+		if(GUI_Main.getSelectedTab() == -1){
+			return;
 		}
 		
 		if(e.getActionCommand().equals("Save")) {
