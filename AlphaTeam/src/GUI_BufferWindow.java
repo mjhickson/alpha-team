@@ -69,30 +69,59 @@ class GUI_BufferWindow {
 		disWindow.setCaretPosition(pos);
 	}
 	
+	/**
+	 * sets the text that is viewable in the currently selected Buffer Window
+	 * @param text, the HTML text
+	 */
 	public void setText(String text) {
 		disWindow.setText(text);
 	}
 	
+	/**
+	 * gets the text that is viewable in the currently selected Buffer Window
+	 * @return the text viewable in the Buffer Window
+	 */
 	public String getText() {
 		return disWindow.getText();
 	}
 	
+	/**
+	 * gets the JScrollPane that makes up the buffer window
+	 * @return scroller, JScrollPane
+	 */
 	public JScrollPane getWindow() {
 		return scroller;
 	}
 	
+	/**
+	 * gets the JTextArea of the currently selected window
+	 * @return disWindow
+	 */
 	public JTextArea getTextArea() {
 		return disWindow;
 	}
 	
+	/**
+	 * gets the title of the currently selected Buffer window
+	 * @return title
+	 */
 	public String getTitle() {
 		return title;
 	}
 	
+	/**
+	 * sets the title of the currently selected Buffer window
+	 * @param title, string of the title you want to set
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	
+	/**
+	 * gets the position of the cursor in the currently selected
+	 * Buffer Windown
+	 * @return an int reperenation of where the cursor is
+	 */
 	public int getCursorPosition() {
 		return disWindow.getCaretPosition();
 	}
@@ -119,6 +148,6 @@ class GUI_BufferWindow {
 	 * @return
 	 */
 	public static GUI_BufferWindow getWindow(int index) {
-		return bufferWindows.get(index);
+			return bufferWindows.get(index);
 	}
 }
